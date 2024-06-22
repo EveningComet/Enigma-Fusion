@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bc7v43o528ywf"]
+[gd_scene load_steps=6 format=3 uid="uid://bc7v43o528ywf"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerLocomotionController.gd" id="1_ney4i"]
 [ext_resource type="Script" path="res://Scripts/Player/PL States/PLGround.gd" id="2_bfebh"]
+[ext_resource type="Script" path="res://Scripts/Player/PL States/PLAir.gd" id="3_eejd3"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_c34u5"]
 
@@ -22,7 +23,7 @@ size = Vector3(0.25, 0.25, 1)
 shape = SubResource("CapsuleShape3D_robhp")
 
 [node name="Camera Rig" type="SpringArm3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 7)
 margin = 0.2
 
 [node name="Camera3D" type="Camera3D" parent="Camera Rig"]
@@ -31,7 +32,10 @@ current = true
 
 [node name="PlayerLocomotionController" type="Node" parent="."]
 script = ExtResource("1_ney4i")
-initial_state = NodePath("PLGround")
+initial_state = NodePath("PLAir")
 
 [node name="PLGround" type="Node" parent="PlayerLocomotionController"]
 script = ExtResource("2_bfebh")
+
+[node name="PLAir" type="Node" parent="PlayerLocomotionController"]
+script = ExtResource("3_eejd3")
