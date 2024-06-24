@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bc7v43o528ywf"]
+[gd_scene load_steps=7 format=3 uid="uid://bc7v43o528ywf"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerLocomotionController.gd" id="1_ney4i"]
+[ext_resource type="Script" path="res://Scripts/Player/CameraController.gd" id="1_x8v2e"]
 [ext_resource type="Script" path="res://Scripts/Player/PL States/PLGround.gd" id="2_bfebh"]
 [ext_resource type="Script" path="res://Scripts/Player/PL States/PLAir.gd" id="3_eejd3"]
 
@@ -25,6 +26,7 @@ shape = SubResource("CapsuleShape3D_robhp")
 [node name="Camera Rig" type="SpringArm3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 7)
 margin = 0.2
+script = ExtResource("1_x8v2e")
 
 [node name="Camera3D" type="Camera3D" parent="Camera Rig"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)
