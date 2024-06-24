@@ -5,8 +5,6 @@ func enter(msgs: Dictionary = {}) -> void:
 	match msgs:
 		{'velocity': var v}:
 			velocity = v
-	
-	print("PLGround :: Entered")
 
 func exit() -> void:
 	velocity = Vector3.ZERO

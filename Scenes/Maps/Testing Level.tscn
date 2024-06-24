@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://clqrs5sav5yat"]
+[gd_scene load_steps=11 format=3 uid="uid://clqrs5sav5yat"]
 
 [ext_resource type="Texture2D" uid="uid://b026ch4xd61wf" path="res://Imported Assets/KenneyNL Prototyping Textures/Dark/texture_01.png" id="1_073uy"]
 [ext_resource type="PackedScene" uid="uid://bc7v43o528ywf" path="res://Scenes/Player/Player.tscn" id="2_spen0"]
+[ext_resource type="Texture2D" uid="uid://qfetfr4iktpy" path="res://Imported Assets/KenneyNL Prototyping Textures/Green/texture_05.png" id="3_xdtom"]
+[ext_resource type="Texture2D" uid="uid://iv3cnl4ixyrf" path="res://Imported Assets/KenneyNL Prototyping Textures/Orange/texture_09.png" id="4_1bf7i"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oeiyl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -20,14 +22,25 @@ glow_enabled = true
 albedo_texture = ExtResource("1_073uy")
 uv1_triplanar = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_isbo1"]
+albedo_texture = ExtResource("3_xdtom")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fucmf"]
+albedo_texture = ExtResource("4_1bf7i")
+uv1_triplanar = true
+
 [node name="Testing Level" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_l6vsh")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 10, 0)
 shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("2_spen0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.30552, 0)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 use_collision = true
@@ -36,5 +49,18 @@ use_collision = true
 size = Vector3(500, 1, 500)
 material = SubResource("StandardMaterial3D_i2dil")
 
-[node name="Player" parent="CSGCombiner3D/Ground" instance=ExtResource("2_spen0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.30552, 0)
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 5, -12)
+size = Vector3(10, 10, 20)
+material = SubResource("StandardMaterial3D_isbo1")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -35, 5, -12)
+size = Vector3(10, 10, 20)
+material = SubResource("StandardMaterial3D_isbo1")
+
+[node name="Ramp" type="CSGPolygon3D" parent="CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -13, 0.5, -11.113)
+polygon = PackedVector2Array(0, 0, 0, 3, 8, 0)
+depth = 5.0
+material = SubResource("StandardMaterial3D_fucmf")
