@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Eventbus="*res://Scripts/Autoloads/Eventbus.gd"
+PlayerRosterController="*res://Scripts/Autoloads/PlayerRosterController.gd"
 
 [display]
 
