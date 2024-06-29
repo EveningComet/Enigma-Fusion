@@ -17,8 +17,6 @@ class_name PartyMemberUISlot extends PanelContainer
 @export var sp_bar: ProgressBar
 @export var xp_bar: ProgressBar
 
-
-
 func on_stat_changed() -> void:
 	# Update the bar if the health, special points, or experience changed
 	curr_char
