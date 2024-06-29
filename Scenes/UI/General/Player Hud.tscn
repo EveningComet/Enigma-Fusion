@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://brvilqhic1pau"]
+
+[ext_resource type="Script" path="res://Scripts/UI/General/PlayerHud.gd" id="1_vwpp3"]
+[ext_resource type="PackedScene" uid="uid://5qu22b5cq405" path="res://Scenes/UI/General/Party Member UI Slot.tscn" id="2_vfnom"]
+
+[node name="Player Hud" type="Control" node_paths=PackedStringArray("container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vwpp3")
+container = NodePath("GridContainer")
+
+[node name="GridContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -180.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="PartyMemberUISlot" parent="GridContainer" instance=ExtResource("2_vfnom")]
+layout_mode = 2

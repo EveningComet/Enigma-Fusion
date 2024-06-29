@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://5qu22b5cq405"]
+
+[ext_resource type="Script" path="res://Scripts/UI/General/PartyMemberUISlot.gd" id="1_rr7sj"]
+
+[node name="PartyMemberUISlot" type="PanelContainer" node_paths=PackedStringArray("char_name_label", "hp_bar", "sp_bar", "xp_bar")]
+custom_minimum_size = Vector2(200, 150)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_rr7sj")
+char_name_label = NodePath("MarginContainer/VBoxContainer/Char Name")
+hp_bar = NodePath("MarginContainer/VBoxContainer/HP Bar")
+sp_bar = NodePath("MarginContainer/VBoxContainer/SP Bar")
+xp_bar = NodePath("MarginContainer/VBoxContainer/XP Bar")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Char Name" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 25)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Char Name"
+
+[node name="HP Bar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+value = 50.0
+
+[node name="SP Bar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+value = 50.0
+
+[node name="XP Bar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+value = 50.0
