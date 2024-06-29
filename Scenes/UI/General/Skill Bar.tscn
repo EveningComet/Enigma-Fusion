@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5ibiy8toq8jr"]
+
+[ext_resource type="Script" path="res://Scripts/UI/General/SkillBar.gd" id="1_hjlpg"]
+[ext_resource type="PackedScene" uid="uid://biiq1vtgyyvgg" path="res://Scenes/UI/General/Skill Slot.tscn" id="2_6gjmm"]
+
+[node name="Skill Bar" type="PanelContainer"]
+custom_minimum_size = Vector2(100, 50)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_hjlpg")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Skill Slot" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_6gjmm")]
+layout_mode = 2
+
+[node name="Skill Slot2" parent="MarginContainer/HBoxContainer" node_paths=PackedStringArray("display_icon") instance=ExtResource("2_6gjmm")]
+layout_mode = 2
+display_icon = NodePath("../Skill Slot/MarginContainer/Display Icon")
+
+[node name="Skill Slot3" parent="MarginContainer/HBoxContainer" node_paths=PackedStringArray("display_icon") instance=ExtResource("2_6gjmm")]
+layout_mode = 2
+display_icon = NodePath("../Skill Slot/MarginContainer/Display Icon")
+
+[node name="Skill Slot4" parent="MarginContainer/HBoxContainer" node_paths=PackedStringArray("display_icon") instance=ExtResource("2_6gjmm")]
+layout_mode = 2
+display_icon = NodePath("../Skill Slot/MarginContainer/Display Icon")
+
+[node name="Skill Slot5" parent="MarginContainer/HBoxContainer" node_paths=PackedStringArray("display_icon") instance=ExtResource("2_6gjmm")]
+layout_mode = 2
+display_icon = NodePath("../Skill Slot/MarginContainer/Display Icon")
+
+[node name="Skill Slot6" parent="MarginContainer/HBoxContainer" node_paths=PackedStringArray("display_icon") instance=ExtResource("2_6gjmm")]
+layout_mode = 2
+display_icon = NodePath("../Skill Slot/MarginContainer/Display Icon")

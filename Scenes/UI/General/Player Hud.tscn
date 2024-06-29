@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://brvilqhic1pau"]
+[gd_scene load_steps=4 format=3 uid="uid://brvilqhic1pau"]
 
 [ext_resource type="Script" path="res://Scripts/UI/General/PlayerHud.gd" id="1_vwpp3"]
 [ext_resource type="PackedScene" uid="uid://5qu22b5cq405" path="res://Scenes/UI/General/Party Member UI Slot.tscn" id="2_vfnom"]
+[ext_resource type="PackedScene" uid="uid://b5ibiy8toq8jr" path="res://Scenes/UI/General/Skill Bar.tscn" id="3_evr5x"]
 
 [node name="Player Hud" type="Control" node_paths=PackedStringArray("container")]
 layout_mode = 3
@@ -27,3 +28,17 @@ alignment = 1
 
 [node name="PartyMemberUISlot" parent="GridContainer" instance=ExtResource("2_vfnom")]
 layout_mode = 2
+
+[node name="Skill Bar" parent="." instance=ExtResource("3_evr5x")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -161.5
+offset_top = 290.0
+offset_right = 161.5
+offset_bottom = 348.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://cw6v7bqh7go64"]
+
+[ext_resource type="Script" path="res://Scripts/Creature/Combatant.gd" id="3_4lt0f"]
+[ext_resource type="Script" path="res://Scripts/Creature/Locomotion/LocomotionController.gd" id="3_jnq1n"]
+[ext_resource type="Script" path="res://Scripts/Creature/Locomotion/States/LAir.gd" id="4_nfob3"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8fqx0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1cobl"]
+albedo_color = Color(0.711633, 0.41223, 0.244806, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l3fip"]
+
+[node name="Test Enemy" type="CharacterBody3D"]
+
+[node name="GFX" type="Node3D" parent="."]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="GFX"]
+mesh = SubResource("CapsuleMesh_8fqx0")
+material = SubResource("StandardMaterial3D_1cobl")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="GFX/CSGMesh3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.554167, -0.507115)
+size = Vector3(0.5, 0.25, 0.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_l3fip")
+
+[node name="LocomotionController" type="Node" parent="."]
+script = ExtResource("3_jnq1n")
+initial_state = NodePath("LAir")
+
+[node name="LAir" type="Node" parent="LocomotionController"]
+script = ExtResource("4_nfob3")
+
+[node name="Combatant" type="Node" parent="."]
+script = ExtResource("3_4lt0f")

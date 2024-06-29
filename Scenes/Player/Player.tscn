@@ -5,14 +5,14 @@
 [ext_resource type="Script" path="res://Scripts/Player/PL States/PLGround.gd" id="2_bfebh"]
 [ext_resource type="Script" path="res://Scripts/Player/PL States/PLAir.gd" id="3_eejd3"]
 [ext_resource type="Script" path="res://Scripts/Creature/Combatant.gd" id="5_1uts1"]
-[ext_resource type="Script" path="res://Scripts/Stats/Stats.gd" id="6_usib5"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerInputController.gd" id="6_tnric"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_c34u5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_robhp"]
 
-[sub_resource type="Resource" id="Resource_gfbps"]
-script = ExtResource("6_usib5")
+[sub_resource type="SphereShape3D" id="SphereShape3D_jpmi0"]
+radius = 5.0
 
 [node name="Player" type="CharacterBody3D"]
 
@@ -49,4 +49,11 @@ script = ExtResource("3_eejd3")
 
 [node name="Combatant" type="Node" parent="."]
 script = ExtResource("5_1uts1")
-stats = SubResource("Resource_gfbps")
+
+[node name="PlayerInputController" type="Node" parent="."]
+script = ExtResource("6_tnric")
+
+[node name="Interaction Radius" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interaction Radius"]
+shape = SubResource("SphereShape3D_jpmi0")
