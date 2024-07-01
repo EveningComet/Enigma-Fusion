@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bc7v43o528ywf"]
+[gd_scene load_steps=11 format=3 uid="uid://bc7v43o528ywf"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerLocomotionController.gd" id="1_ney4i"]
 [ext_resource type="Script" path="res://Scripts/Player/CameraController.gd" id="1_x8v2e"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/PL States/PLAir.gd" id="3_eejd3"]
 [ext_resource type="Script" path="res://Scripts/Creature/Combatant.gd" id="5_1uts1"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerInputController.gd" id="6_tnric"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerHostileTalkHandler.gd" id="7_gswu2"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_c34u5"]
 
@@ -57,3 +58,12 @@ script = ExtResource("6_tnric")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interaction Radius"]
 shape = SubResource("SphereShape3D_jpmi0")
+
+[node name="PlayerHostileTalkHandler" type="Node" parent="." node_paths=PackedStringArray("cooldown_timer", "interaction_radius")]
+script = ExtResource("7_gswu2")
+cooldown_timer = NodePath("Timer")
+interaction_radius = NodePath("../Interaction Radius")
+
+[node name="Timer" type="Timer" parent="PlayerHostileTalkHandler"]
+process_callback = 0
+one_shot = true

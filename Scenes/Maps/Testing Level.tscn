@@ -75,7 +75,8 @@ material = SubResource("StandardMaterial3D_fucmf")
 
 [node name="Hud Layer" type="CanvasLayer" parent="."]
 
-[node name="Player Hud" parent="Hud Layer" instance=ExtResource("5_eerm1")]
+[node name="Player Hud" parent="Hud Layer" node_paths=PackedStringArray("player_node") instance=ExtResource("5_eerm1")]
+player_node = NodePath("../../Player")
 
 [node name="Pause Menu" type="CanvasLayer" parent="."]
 

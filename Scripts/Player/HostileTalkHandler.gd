@@ -8,4 +8,4 @@ func on_begin_conversation(target) -> void:
 	if target.has_node("Combatant") == false:
 		return
 	
-	PlayerRosterController.add_to_roster()
+	PlayerRosterController.add_to_roster(target)

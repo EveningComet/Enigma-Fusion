@@ -1,5 +1,5 @@
 ## Stores a skill at a given time.
-class_name SkillSlot extends PanelContainer
+class_name SkillSlotUI extends PanelContainer
 
 @export var curr_skill: SkillData:
 	get: return curr_skill

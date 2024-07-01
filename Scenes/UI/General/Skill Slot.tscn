@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://biiq1vtgyyvgg"]
 
-[ext_resource type="Script" path="res://Scripts/UI/General/SkillSlot.gd" id="1_j2cut"]
+[ext_resource type="Script" path="res://Scripts/UI/Skill UI/SkillSlotUI.gd" id="1_j2cut"]
 [ext_resource type="Texture2D" uid="uid://bdu5ksrpwk46w" path="res://icon.svg" id="2_bvpkb"]
 
 [node name="Skill Slot" type="PanelContainer" node_paths=PackedStringArray("display_icon")]
