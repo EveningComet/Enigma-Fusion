@@ -22,6 +22,10 @@ func on_active_party_changed(curr_party: Array) -> void:
 	if OS.is_debug_build() == true:
 		print("PlayerHud :: Active party changed!")
 	
+	# Clean out the old slots
+	for slot in party_container.get_children():
+		slot.queue_free()
+		
 	# Create a slot for each party member
 	for pm in curr_party:
 		var pmui_slot: PartyMemberUISlot = party_member_slot_prefab.instantiate()

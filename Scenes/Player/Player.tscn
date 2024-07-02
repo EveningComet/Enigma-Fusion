@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bc7v43o528ywf"]
+[gd_scene load_steps=13 format=3 uid="uid://bc7v43o528ywf"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerLocomotionController.gd" id="1_ney4i"]
 [ext_resource type="Script" path="res://Scripts/Player/CameraController.gd" id="1_x8v2e"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://Scripts/Player/PL States/PLAir.gd" id="3_eejd3"]
 [ext_resource type="Script" path="res://Scripts/Creature/Combatant.gd" id="5_1uts1"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerInputController.gd" id="6_tnric"]
+[ext_resource type="Script" path="res://Scripts/Creature/Skill/SkillHandler.gd" id="6_uijcs"]
+[ext_resource type="Resource" uid="uid://brfpqfn6tfjv4" path="res://Game Data/Skills/Test Projectile Attack.tres" id="7_654j6"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerHostileTalkHandler.gd" id="7_gswu2"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_c34u5"]
@@ -50,6 +52,10 @@ script = ExtResource("3_eejd3")
 
 [node name="Combatant" type="Node" parent="."]
 script = ExtResource("5_1uts1")
+
+[node name="SkillHandler" type="Node" parent="Combatant"]
+script = ExtResource("6_uijcs")
+skills_to_instance = Array[Resource("res://Scripts/Creature/Skill/SkillData.gd")]([ExtResource("7_654j6")])
 
 [node name="PlayerInputController" type="Node" parent="."]
 script = ExtResource("6_tnric")

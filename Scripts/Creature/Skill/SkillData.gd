@@ -6,6 +6,9 @@ class_name SkillData extends Resource
 @export_multiline var localization_description: String = "New description."
 
 @export_category("Definitions")
+## Can this skill be activated?
+@export var is_passive: bool = false
+
 ## How long, in seconds, before this skill can be used again?
 @export var base_cooldown: float = 1.0
 
