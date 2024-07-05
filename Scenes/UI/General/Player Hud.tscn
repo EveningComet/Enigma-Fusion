@@ -88,9 +88,3 @@ offset_right = 161.5
 offset_bottom = 348.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="ProgressBar" type="ProgressBar" parent="."]
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 0
-offset_right = 4.0
-offset_bottom = 27.0

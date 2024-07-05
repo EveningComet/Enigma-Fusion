@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerLocomotionController.gd" id="1_ney4i"]
 [ext_resource type="Script" path="res://Scripts/Player/CameraController.gd" id="1_x8v2e"]
-[ext_resource type="Script" path="res://Scripts/Player/PL States/PLGround.gd" id="2_bfebh"]
-[ext_resource type="Script" path="res://Scripts/Player/PL States/PLAir.gd" id="3_eejd3"]
+[ext_resource type="Script" path="res://Scripts/Player/Player Locomotion States/PLGround.gd" id="3_wdwin"]
+[ext_resource type="Script" path="res://Scripts/Player/Player Locomotion States/PLAir.gd" id="4_gfngo"]
 [ext_resource type="Script" path="res://Scripts/Creature/Combatant.gd" id="5_1uts1"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerInputController.gd" id="6_tnric"]
 [ext_resource type="Script" path="res://Scripts/Creature/Skill/SkillHandler.gd" id="6_uijcs"]
@@ -31,24 +31,27 @@ size = Vector3(0.25, 0.25, 1)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_robhp")
 
-[node name="Camera Rig" type="SpringArm3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 7)
+[node name="Camera Rig" type="SpringArm3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+spring_length = 4.0
 margin = 0.2
 script = ExtResource("1_x8v2e")
+target = NodePath("..")
 
 [node name="Camera3D" type="Camera3D" parent="Camera Rig"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 current = true
 
-[node name="PlayerLocomotionController" type="Node" parent="."]
+[node name="PlayerLocomotionController" type="Node" parent="." node_paths=PackedStringArray("camera_controller")]
 script = ExtResource("1_ney4i")
-initial_state = NodePath("PLAir")
+camera_controller = NodePath("../Camera Rig")
+initial_state = NodePath("PLGround")
 
 [node name="PLGround" type="Node" parent="PlayerLocomotionController"]
-script = ExtResource("2_bfebh")
+script = ExtResource("3_wdwin")
 
 [node name="PLAir" type="Node" parent="PlayerLocomotionController"]
-script = ExtResource("3_eejd3")
+script = ExtResource("4_gfngo")
 
 [node name="Combatant" type="Node" parent="."]
 script = ExtResource("5_1uts1")

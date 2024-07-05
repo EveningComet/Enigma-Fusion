@@ -23,6 +23,8 @@ func handle_move(delta: float) -> void:
 	if cb.is_on_floor() == false:
 		my_state_machine.change_to_state("PLAir", {velocity = velocity})
 		return
+	
+	orient_to_face_camera_direction(my_state_machine.camera_controller, delta)
 
 func get_input_vector() -> void:
 	# Get our movement value, adjusted to work with controllers

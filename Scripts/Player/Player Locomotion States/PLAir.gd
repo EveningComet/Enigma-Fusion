@@ -42,6 +42,8 @@ func handle_move(delta: float) -> void:
 		velocity.y = 0
 		my_state_machine.change_to_state("PLGround", {velocity = velocity})
 		return
+	
+	orient_to_face_camera_direction(my_state_machine.camera_controller, delta)
 
 func get_input_vector() -> void:
 	# Get our movement value, adjusted to work with controllers

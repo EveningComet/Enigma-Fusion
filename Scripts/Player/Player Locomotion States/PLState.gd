@@ -52,17 +52,17 @@ func apply_movement(delta: float) -> void:
 func apply_friction(delta: float) -> void:
 	pass
 	
-### Many of the movement states need to update the character's facing direction
-### based on the camera.
-#func orient_to_face_camera_direction(camera: CameraController, delta: float) -> void:
-	#var direction = (camera.global_transform.basis * Vector3.BACK).normalized()
-	#var q_from = cb.transform.basis.get_rotation_quaternion()
-	#var left_axis = Vector3.UP.cross(direction)
-	#var rotation_basis = Basis(left_axis, Vector3.UP, direction).get_rotation_quaternion()
-	#cb.basis = Basis(q_from.slerp(rotation_basis, delta * rot_speed))
-	#
-	## Prevent weird stuff from happening
-	#cb.transform.basis = cb.transform.basis.orthonormalized()
+## Many of the movement states need to update the character's facing direction
+## based on the camera.
+func orient_to_face_camera_direction(camera: CameraController, delta: float) -> void:
+	var direction = (camera.global_transform.basis * Vector3.BACK).normalized()
+	var q_from = cb.transform.basis.get_rotation_quaternion()
+	var left_axis = Vector3.UP.cross(direction)
+	var rotation_basis = Basis(left_axis, Vector3.UP, direction).get_rotation_quaternion()
+	cb.basis = Basis(q_from.slerp(rotation_basis, delta * rot_speed))
+	
+	# Prevent weird stuff from happening
+	cb.transform.basis = cb.transform.basis.orthonormalized()
 
 func check_if_on_ground_or_ceiling() -> void:
 	# Don't calculate gravity if we're on the ground and make us fall down when hitting the ceiling
