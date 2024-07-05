@@ -15,26 +15,25 @@ func _ready() -> void:
 	body_entered.connect( on_body_entered )
 	
 func _physics_process(delta: float) -> void:
-	global_position += -transform.basis.z * speed * delta
+	global_position += velocity * speed * delta
 	curr_lifetime += delta
 	if curr_lifetime >= max_lifetime:
 		queue_free()
 
 func set_direction(dir: Vector3) -> void:
-	pass
+	velocity = dir
 
 func on_body_entered(body) -> void:
-	# TODO: This is bad form. Modify this.
-	if body.name == "Player":
-		return
-	
-	# TODO: Bad form. Modify this.
-	if body.name == "Test Enemy":
-		# Collided with an enemy the player can talk to, fire the event
-		Eventbus.begin_conversation_with_enemy.emit(body)
-	
-	if OS.is_debug_build() == true:
-		print("HostileTalkStarter :: Collided and destroying self.")
+	if body.has_node("Combatant"):
+		var combatant: Combatant = body.get_node("Combatant")
+		if PlayerRosterController.contains_character(body) == false:
+			
+			# Collided with an enemy the player can talk to, fire the event
+			Eventbus.begin_conversation_with_enemy.emit(body)
+		
+		# Pass through characters that are already belonging to the player
+		else:
+			return
 	
 	# Destroy us when colliding with anything else
 	queue_free()

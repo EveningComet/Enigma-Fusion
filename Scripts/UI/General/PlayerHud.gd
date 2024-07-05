@@ -19,9 +19,6 @@ func _ready() -> void:
 	)
 
 func on_active_party_changed(curr_party: Array) -> void:
-	if OS.is_debug_build() == true:
-		print("PlayerHud :: Active party changed!")
-	
 	# Clean out the old slots
 	for slot in party_container.get_children():
 		slot.queue_free()

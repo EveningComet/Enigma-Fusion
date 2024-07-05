@@ -4,6 +4,8 @@ class_name PlayerHostileTalkHandler extends Node
 ## Used to display the cooldown to the player.
 signal player_pressed_hostile_talk_button()
 
+@export var camera_controller: CameraController
+
 @export var cooldown_timer: Timer
 
 @export var hostile_talk_starter_prefab: PackedScene
@@ -23,6 +25,11 @@ func _physics_process(delta: float) -> void:
 		
 		# TODO: Have the player aim for the enemy they want to talk to.
 		# Find the nearest character to talk to
-		var hostile_talk_starter = hostile_talk_starter_prefab.instantiate()
+		var hostile_talk_starter: HostileTalkStarter = hostile_talk_starter_prefab.instantiate()
 		get_parent().add_child(hostile_talk_starter)
+		
+		# Make the object fly in the direction the camera is looking
+		var dir: Vector3 = -camera_controller.global_transform.basis.z
+		hostile_talk_starter.set_direction(dir)
+		
 		
