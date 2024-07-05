@@ -8,6 +8,7 @@ class_name PartyMemberUISlot extends PanelContainer
 	get: return curr_char
 	set(value):
 		curr_char = value
+		# TODO: Subscribe to stat changing events.
 		char_name_label.set_text(curr_char.name)
 
 @export var char_name_label: Label

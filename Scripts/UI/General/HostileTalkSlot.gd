@@ -10,6 +10,7 @@ var cooldown_timer: Timer
 
 func _ready() -> void:
 	set_physics_process(false)
+	on_timer_timeout()
 
 func set_player_hostile_talk_handler(new_th: PlayerHostileTalkHandler) -> void:
 	player_hostile_talk_handler = new_th

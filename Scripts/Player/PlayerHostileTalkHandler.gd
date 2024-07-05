@@ -1,9 +1,12 @@
 ## Used to handle talking with hostile NPCs.
 class_name PlayerHostileTalkHandler extends Node
 
+## Used to display the cooldown to the player.
 signal player_pressed_hostile_talk_button()
 
 @export var cooldown_timer: Timer
+
+@export var hostile_talk_starter_prefab: PackedScene
 
 ## How long, in seconds, before the player can talk to another enemy.
 @export var cooldown_time:  float = 30.0
@@ -20,9 +23,6 @@ func _physics_process(delta: float) -> void:
 		
 		# TODO: Have the player aim for the enemy they want to talk to.
 		# Find the nearest character to talk to
-		var potential_targets: Array = interaction_radius.get_overlapping_bodies()
-		potential_targets.erase(get_parent())
-		for e in potential_targets:
-			if e.name == "Test Enemy":
-				PlayerRosterController.add_to_roster(e)
+		var hostile_talk_starter = hostile_talk_starter_prefab.instantiate()
+		get_parent().add_child(hostile_talk_starter)
 		

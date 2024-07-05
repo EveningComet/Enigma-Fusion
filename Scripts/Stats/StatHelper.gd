@@ -25,7 +25,10 @@ enum StatTypes {
 	FireMods,
 	WaterMods,
 	EarthMods,
-	AirMods
+	AirMods,
+	
+	# Other
+	CritChance
 }
 
 ## The different damage types that exist in the game.

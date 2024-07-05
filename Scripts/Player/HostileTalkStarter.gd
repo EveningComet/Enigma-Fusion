@@ -1,0 +1,40 @@
+## When colliding with an enemy, and they are able to talk, this will enter the
+## talking state for the player.
+class_name HostileTalkStarter extends Area3D
+
+@export var speed: float = 10.0
+
+## How long this exists before destroying itself.
+@export var max_lifetime: float = 3.0
+var curr_lifetime: float = 0.0
+
+var velocity: Vector3 = Vector3.ZERO
+
+func _ready() -> void:
+	set_as_top_level(true)
+	body_entered.connect( on_body_entered )
+	
+func _physics_process(delta: float) -> void:
+	global_position += -transform.basis.z * speed * delta
+	curr_lifetime += delta
+	if curr_lifetime >= max_lifetime:
+		queue_free()
+
+func set_direction(dir: Vector3) -> void:
+	pass
+
+func on_body_entered(body) -> void:
+	# TODO: This is bad form. Modify this.
+	if body.name == "Player":
+		return
+	
+	# TODO: Bad form. Modify this.
+	if body.name == "Test Enemy":
+		# Collided with an enemy the player can talk to, fire the event
+		Eventbus.begin_conversation_with_enemy.emit(body)
+	
+	if OS.is_debug_build() == true:
+		print("HostileTalkStarter :: Collided and destroying self.")
+	
+	# Destroy us when colliding with anything else
+	queue_free()

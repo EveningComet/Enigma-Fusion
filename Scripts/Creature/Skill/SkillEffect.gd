@@ -6,5 +6,12 @@ class_name SkillEffect extends Resource
 
 @export var use_special_stat: bool = false
 
+func get_facing_dir(dir: Vector3):
+	pass
+
 func get_power(com: Combatant) -> float:
 	return 0.0
+
+## Have the particular skill effect do its thing.
+func execute(activator, targets) -> void:
+	pass

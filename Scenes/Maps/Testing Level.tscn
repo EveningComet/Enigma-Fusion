@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dlvi5ahhmor1q" path="res://Scenes/Test Friendly AI.tscn" id="6_ktkaw"]
 [ext_resource type="PackedScene" uid="uid://dd8krdwvnt2cm" path="res://Scenes/UI/Pause Menu.tscn" id="7_uu3dd"]
 [ext_resource type="PackedScene" uid="uid://cw6v7bqh7go64" path="res://Scenes/Test Enemy.tscn" id="8_pltb2"]
-[ext_resource type="Script" path="res://Scripts/Player/HostileTalkHandler.gd" id="9_dnqrv"]
+[ext_resource type="Script" path="res://Scripts/Player/HostileTalkResolver.gd" id="9_dnqrv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oeiyl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -85,5 +85,5 @@ player_node = NodePath("../../Player")
 [node name="Test Enemy" parent="." instance=ExtResource("8_pltb2")]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -21.8512, 1.6, -14.6869)
 
-[node name="HostileTalkHandler" type="Node" parent="."]
+[node name="HostileTalkResolver" type="Node" parent="."]
 script = ExtResource("9_dnqrv")

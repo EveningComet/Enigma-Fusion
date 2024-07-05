@@ -33,6 +33,12 @@ func remove_from_active_party(character_to_remove) -> void:
 func delete() -> void:
 	pass
 
+func contains_character(character_to_check) -> bool:
+	# TODO: Proper data types.
+	if roster.has(character_to_check):
+		return true
+	return false
+
 ## Give the player and their team experience points.
 func give_experience_points(amt: int) ->  void:
 	for pm in roster:

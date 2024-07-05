@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bc7v43o528ywf"]
+[gd_scene load_steps=15 format=3 uid="uid://bc7v43o528ywf"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerLocomotionController.gd" id="1_ney4i"]
 [ext_resource type="Script" path="res://Scripts/Player/CameraController.gd" id="1_x8v2e"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://Scripts/Creature/Skill/SkillHandler.gd" id="6_uijcs"]
 [ext_resource type="Resource" uid="uid://brfpqfn6tfjv4" path="res://Game Data/Skills/Test Projectile Attack.tres" id="7_654j6"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerHostileTalkHandler.gd" id="7_gswu2"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerSkillActivator.gd" id="9_wq3v5"]
+[ext_resource type="PackedScene" uid="uid://dewqtqbx2j88g" path="res://Scenes/Player/Hostile Talk Starter.tscn" id="11_hfac6"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_c34u5"]
 
@@ -32,14 +34,13 @@ size = Vector3(0.25, 0.25, 1)
 shape = SubResource("CapsuleShape3D_robhp")
 
 [node name="Camera Rig" type="SpringArm3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 spring_length = 4.0
 margin = 0.2
 script = ExtResource("1_x8v2e")
 target = NodePath("..")
 
 [node name="Camera3D" type="Camera3D" parent="Camera Rig"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 current = true
 
 [node name="PlayerLocomotionController" type="Node" parent="." node_paths=PackedStringArray("camera_controller")]
@@ -63,6 +64,10 @@ skills_to_instance = Array[Resource("res://Scripts/Creature/Skill/SkillData.gd")
 [node name="PlayerInputController" type="Node" parent="."]
 script = ExtResource("6_tnric")
 
+[node name="PlayerSkillActivator" type="Node" parent="." node_paths=PackedStringArray("skill_handler")]
+script = ExtResource("9_wq3v5")
+skill_handler = NodePath("../Combatant/SkillHandler")
+
 [node name="Interaction Radius" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interaction Radius"]
@@ -71,6 +76,7 @@ shape = SubResource("SphereShape3D_jpmi0")
 [node name="PlayerHostileTalkHandler" type="Node" parent="." node_paths=PackedStringArray("cooldown_timer", "interaction_radius")]
 script = ExtResource("7_gswu2")
 cooldown_timer = NodePath("Timer")
+hostile_talk_starter_prefab = ExtResource("11_hfac6")
 interaction_radius = NodePath("../Interaction Radius")
 
 [node name="Timer" type="Timer" parent="PlayerHostileTalkHandler"]

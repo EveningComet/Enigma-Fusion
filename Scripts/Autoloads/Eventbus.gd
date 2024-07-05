@@ -8,4 +8,4 @@ signal hp_depleted(combatant: Combatant)
 signal active_party_changed(active_party: Array)
 
 ## Fired when the player tries talking to an NPC or an enemy.
-signal begin_conversation(node)
+signal begin_conversation_with_enemy(target)
