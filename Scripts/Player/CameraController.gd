@@ -17,7 +17,7 @@ func _ready() -> void:
 	add_excluded_object(get_parent()) # Ignore the player
 	set_as_top_level(true)
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		# Rotate the x, and clamp the values
 		rotation_degrees.x -= event.relative.y * mouse_sensitivity
