@@ -21,11 +21,36 @@ config/icon="res://icon.svg"
 Eventbus="*res://Scripts/Autoloads/Eventbus.gd"
 PlayerRosterController="*res://Scripts/Autoloads/PlayerRosterController.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+PlayerInventory="*res://Scripts/Autoloads/PlayerInventory.gd"
 
 [dialogic]
 
 directories/dch_directory={}
-directories/dtl_directory={}
+directories/dtl_directory={
+"Test Creature Timeline": "res://Game Data/Creature Data/Test/Test Creature Timeline.dtl"
+}
+layout/style_list=[]
+layout/default_style="Default"
+glossary/default_case_sensitive=true
+variables={}
+extensions_folder="res://addons/dialogic_additions"
+text/letter_speed=0.01
+text/initial_text_reveal_skippable=true
+text/text_reveal_skip_delay=0.1
+text/advance_delay=0.1
+text/autoadvance_per_character_delay=0.1
+text/autoadvance_ignored_characters_enabled=true
+choices/autofocus_first=true
+choices/delay=0.2
+choices/reveal_delay=0
+choices/reveal_by_input=false
+animations/join_default_length=0.5
+animations/join_default_wait=true
+animations/leave_default_length=0.5
+animations/leave_default_wait=true
+animations/cross_fade_default_length=0.5
+save/autosave_delay=60.0
+save/encryption_on_exports_only=true
 
 [display]
 

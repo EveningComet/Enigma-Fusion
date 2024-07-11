@@ -1,14 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://clqrs5sav5yat"]
+[gd_scene load_steps=18 format=3 uid="uid://clqrs5sav5yat"]
 
 [ext_resource type="Texture2D" uid="uid://b026ch4xd61wf" path="res://Imported Assets/KenneyNL Prototyping Textures/Dark/texture_01.png" id="1_073uy"]
 [ext_resource type="PackedScene" uid="uid://bc7v43o528ywf" path="res://Scenes/Player/Player.tscn" id="2_spen0"]
 [ext_resource type="Texture2D" uid="uid://qfetfr4iktpy" path="res://Imported Assets/KenneyNL Prototyping Textures/Green/texture_05.png" id="3_xdtom"]
 [ext_resource type="Texture2D" uid="uid://iv3cnl4ixyrf" path="res://Imported Assets/KenneyNL Prototyping Textures/Orange/texture_09.png" id="4_1bf7i"]
 [ext_resource type="PackedScene" uid="uid://brvilqhic1pau" path="res://Scenes/UI/General/Player Hud.tscn" id="5_eerm1"]
-[ext_resource type="PackedScene" uid="uid://dlvi5ahhmor1q" path="res://Scenes/Test Friendly AI.tscn" id="6_ktkaw"]
 [ext_resource type="PackedScene" uid="uid://dd8krdwvnt2cm" path="res://Scenes/UI/Pause Menu.tscn" id="7_uu3dd"]
 [ext_resource type="PackedScene" uid="uid://cw6v7bqh7go64" path="res://Scenes/Test Enemy.tscn" id="8_pltb2"]
 [ext_resource type="Script" path="res://Scripts/Player/HostileTalkResolver.gd" id="9_dnqrv"]
+[ext_resource type="PackedScene" uid="uid://dkxv8sw02veo8" path="res://Scenes/Player/Time Stop Area.tscn" id="10_5msbi"]
+[ext_resource type="Script" path="res://Scripts/Testing/Rotator.gd" id="10_vyp5i"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oeiyl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -35,6 +36,9 @@ uv1_triplanar = true
 albedo_texture = ExtResource("4_1bf7i")
 uv1_triplanar = true
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_wlcux"]
+size = Vector3(1, 1, 5)
+
 [node name="Testing Level" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -46,9 +50,6 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_spen0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.30552, 0)
-
-[node name="Test Friendly AI" parent="." instance=ExtResource("6_ktkaw")]
-transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 0, 2, -14)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 use_collision = true
@@ -87,3 +88,16 @@ transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107
 
 [node name="HostileTalkResolver" type="Node" parent="."]
 script = ExtResource("9_dnqrv")
+time_stop_area_prefab = ExtResource("10_5msbi")
+
+[node name="Rotating Cube" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 4, -26)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rotating Cube"]
+shape = SubResource("BoxShape3D_wlcux")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Rotating Cube/CollisionShape3D"]
+size = Vector3(1, 1, 5)
+
+[node name="Rotator" type="Node" parent="Rotating Cube"]
+script = ExtResource("10_vyp5i")

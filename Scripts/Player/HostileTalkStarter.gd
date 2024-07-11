@@ -31,9 +31,9 @@ func on_body_entered(body) -> void:
 			# Collided with an enemy the player can talk to, fire the event
 			Eventbus.begin_conversation_with_enemy.emit(body)
 		
-		# Pass through characters that are already belonging to the player
+		# Pass through characters that already belong to the player
 		else:
 			return
 	
-	# Destroy us when colliding with anything else
+	# Destroy after collision
 	queue_free()

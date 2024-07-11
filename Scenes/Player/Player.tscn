@@ -72,6 +72,7 @@ skill_handler = NodePath("../Combatant/SkillHandler")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interaction Radius"]
 shape = SubResource("SphereShape3D_jpmi0")
+disabled = true
 
 [node name="PlayerHostileTalkHandler" type="Node" parent="." node_paths=PackedStringArray("camera_controller", "cooldown_timer", "interaction_radius")]
 script = ExtResource("7_gswu2")

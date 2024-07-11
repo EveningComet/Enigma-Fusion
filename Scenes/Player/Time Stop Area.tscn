@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkxv8sw02veo8"]
+
+[ext_resource type="Script" path="res://Scripts/Player/TimeStopArea.gd" id="1_0e3wo"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6c6n1"]
+radius = 25.0
+
+[node name="Time Stop Area" type="Area3D"]
+monitoring = false
+script = ExtResource("1_0e3wo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_6c6n1")
