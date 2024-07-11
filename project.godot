@@ -51,6 +51,7 @@ animations/leave_default_wait=true
 animations/cross_fade_default_length=0.5
 save/autosave_delay=60.0
 save/encryption_on_exports_only=true
+text/autopauses={}
 
 [display]
 

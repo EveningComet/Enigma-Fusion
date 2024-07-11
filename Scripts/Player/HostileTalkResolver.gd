@@ -28,13 +28,16 @@ func on_begin_conversation(target) -> void:
 	if curr_target.has_node("CreatureInstance") == true:
 		Dialogic.signal_event.connect(on_enemy_conversation_ended)
 		Dialogic.start(curr_target.get_node("CreatureInstance").blueprint.sequence)
+		Dialogic.timeline_ended.connect( on_dialogic_dialogue_ended )
+
+func on_dialogic_dialogue_ended() -> void:
+	# Clean up
+	Dialogic.signal_event.disconnect( on_enemy_conversation_ended )
+	Dialogic.timeline_ended.disconnect( on_dialogic_dialogue_ended )
+	curr_time_stop_area.queue_free()
+	curr_time_stop_area = null
+	curr_target = null
 
 func on_enemy_conversation_ended(argument: String) -> void:
 	if argument.to_lower().contains("success") == true:
 		PlayerRosterController.add_to_roster(curr_target)
-	
-	# Clean up
-	Dialogic.signal_event.disconnect( on_enemy_conversation_ended )
-	curr_time_stop_area.queue_free()
-	curr_time_stop_area = null
-	curr_target = null

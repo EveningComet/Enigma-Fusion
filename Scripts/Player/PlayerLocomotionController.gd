@@ -10,5 +10,8 @@ func set_me_up() -> void:
 	cb = get_parent()
 	super()
 
+func _unhandled_input(event: InputEvent) -> void:
+	curr_state.check_for_unhandled_input(event)
+
 func _physics_process(delta: float) -> void:
 	curr_state.physics_update( delta )
