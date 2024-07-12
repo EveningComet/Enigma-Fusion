@@ -29,8 +29,8 @@ directories/dch_directory={}
 directories/dtl_directory={
 "Test Creature Timeline": "res://Game Data/Creature Data/Test/Test Creature Timeline.dtl"
 }
-layout/style_list=[]
-layout/default_style="Default"
+layout/style_list=["res://Game Data/Dialogic Data/Dialogic Style.tres"]
+layout/default_style="res://Game Data/Dialogic Data/Dialogic Style.tres"
 glossary/default_case_sensitive=true
 variables={}
 extensions_folder="res://addons/dialogic_additions"
