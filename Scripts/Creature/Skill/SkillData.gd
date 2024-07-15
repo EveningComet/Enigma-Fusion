@@ -25,4 +25,4 @@ class_name SkillData extends Resource
 ## Perform this action.
 func execute(activator, targets) -> void:
 	for e: SkillEffect in effects:
-		pass
+		e.execute(activator, targets)

@@ -22,5 +22,9 @@ func handle_cooldowns(delta: float) -> void:
 			si.tick(delta)
 
 func activate_skill(s_to_activate: SkillInstance) -> void:
+	if s_to_activate.is_cooldown_finished() == false:
+		return
+		
 	skill_executed.emit(s_to_activate)
+	s_to_activate.skill.execute(get_parent().get_parent(), [])
 	s_to_activate.reset()
