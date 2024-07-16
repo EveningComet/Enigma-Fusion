@@ -39,8 +39,9 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Quit"
 
-[node name="MainMenuController" type="Node" parent="." node_paths=PackedStringArray("start_game_button", "quit_button")]
+[node name="MainMenuController" type="Node" parent="." node_paths=PackedStringArray("start_game_button", "quit_button", "button_holder")]
 script = ExtResource("1_0me87")
 start_game_button = NodePath("../Control/VBoxContainer/Start Game")
 quit_button = NodePath("../Control/VBoxContainer/Quit")
+button_holder = NodePath("../Control/VBoxContainer")
 game_scene_path = "res://Scenes/Game.tscn"

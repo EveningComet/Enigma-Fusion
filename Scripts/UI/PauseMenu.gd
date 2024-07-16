@@ -7,6 +7,10 @@ func _ready():
 	
 	# Start the menu off hidden
 	visible = false
+	
+	# TODO: Find a better place to start playing the music.
+	var audio: AudioStream = preload("res://Imported Assets/Audio/Music/Vindswept - Windswept Murmur.ogg")
+	SoundManager.play_music_at_volume(audio, -20.0, 1.0, "Music")
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
