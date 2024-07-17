@@ -44,7 +44,6 @@ func set_shooter(_shooter) -> void:
 ## The direction that this projectile should move towards.
 func set_direction(_dir: Vector3) -> void:
 	direction = _dir
-	look_at(direction)
 
 ## What to do when this projectile collides with something?
 func on_hit() -> void:
