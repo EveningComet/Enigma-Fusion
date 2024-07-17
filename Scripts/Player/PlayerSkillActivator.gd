@@ -1,6 +1,8 @@
 ## Middleman for activating the player's skills.
 class_name PlayerSkillActivator extends Node
 
+@export var camera_controller: CameraController
+
 ## The object storing the skills.
 @export var skill_handler: SkillHandler
 
@@ -26,4 +28,6 @@ func _process(delta: float) -> void:
 	if InputEventJoypadButton:
 		if Input.is_action_pressed("use_extra_skills") and Input.is_action_just_pressed("skill_action_3"):
 			pass
-	
+
+func get_aim_dir() -> Vector3:
+	return camera_controller.aim_cast.global_transform * camera_controller.aim_cast.target_position

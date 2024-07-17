@@ -37,15 +37,19 @@ size = Vector3(0.25, 0.25, 1)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_robhp")
 
-[node name="Camera Rig" type="SpringArm3D" parent="." node_paths=PackedStringArray("target")]
+[node name="Camera Rig" type="SpringArm3D" parent="." node_paths=PackedStringArray("aim_cast", "target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 spring_length = 4.0
 margin = 0.2
 script = ExtResource("1_x8v2e")
+aim_cast = NodePath("Camera3D/Aim Cast")
 target = NodePath("..")
 
 [node name="Camera3D" type="Camera3D" parent="Camera Rig"]
 current = true
+
+[node name="Aim Cast" type="RayCast3D" parent="Camera Rig/Camera3D"]
+target_position = Vector3(0, 0, -1000)
 
 [node name="PlayerLocomotionController" type="Node" parent="." node_paths=PackedStringArray("camera_controller")]
 script = ExtResource("1_ney4i")
@@ -69,8 +73,9 @@ skills_to_instance = Array[Resource("res://Scripts/Creature/Skill/SkillData.gd")
 [node name="PlayerInputController" type="Node" parent="."]
 script = ExtResource("6_tnric")
 
-[node name="PlayerSkillActivator" type="Node" parent="." node_paths=PackedStringArray("skill_handler")]
+[node name="PlayerSkillActivator" type="Node" parent="." node_paths=PackedStringArray("camera_controller", "skill_handler")]
 script = ExtResource("9_wq3v5")
+camera_controller = NodePath("../Camera Rig")
 skill_handler = NodePath("../Combatant/SkillHandler")
 
 [node name="Interaction Radius" type="Area3D" parent="."]
