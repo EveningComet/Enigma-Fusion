@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://clqrs5sav5yat"]
+[gd_scene load_steps=19 format=3 uid="uid://clqrs5sav5yat"]
 
 [ext_resource type="Texture2D" uid="uid://b026ch4xd61wf" path="res://Imported Assets/KenneyNL Prototyping Textures/Dark/texture_01.png" id="1_073uy"]
 [ext_resource type="PackedScene" uid="uid://bc7v43o528ywf" path="res://Scenes/Player/Player.tscn" id="2_spen0"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/HostileTalkResolver.gd" id="9_dnqrv"]
 [ext_resource type="PackedScene" uid="uid://dkxv8sw02veo8" path="res://Scenes/Player/Time Stop Area.tscn" id="10_5msbi"]
 [ext_resource type="Script" path="res://Scripts/Testing/Rotator.gd" id="10_vyp5i"]
+[ext_resource type="Script" path="res://Scripts/Combat/DeathListener.gd" id="11_tnyfu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oeiyl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -101,3 +102,6 @@ size = Vector3(1, 1, 5)
 
 [node name="Rotator" type="Node" parent="Rotating Cube"]
 script = ExtResource("10_vyp5i")
+
+[node name="DeathListener" type="Node" parent="."]
+script = ExtResource("11_tnyfu")

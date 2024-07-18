@@ -13,6 +13,8 @@ var shooter: Node3D = null # TODO: System to prevent projectiles from damaging a
 
 var direction: Vector3 = Vector3.ZERO
 
+var damage: int = 0 # TODO: This will have to be overhauled to store damage data.
+
 func _ready() -> void:
 	set_as_top_level(true)
 
@@ -27,7 +29,8 @@ func _physics_process(delta: float) -> void:
 			
 			if collider.has_node("Combatant"):
 				var com: Combatant = collider.get_node("Combatant")
-				com.take_damage()
+				# TODO: Functionality for preventing this projectile from harming allies.
+				com.take_damage(10)
 			
 			# Destroy the projectile
 			queue_free()

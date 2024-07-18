@@ -8,7 +8,7 @@
 script = ExtResource("1_uhxv8")
 projectile_prefab = ExtResource("1_8utjy")
 power_scale = 1.0
-use_special_stat = false
+use_special_stat = true
 
 [resource]
 script = ExtResource("1_rc8co")

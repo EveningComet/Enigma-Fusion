@@ -9,13 +9,9 @@ var base_value: float = 0
 ## The things that will change the modified value
 var modifiers: Array[StatModifier] = []
 
-## Should this stat be returned as an int?
-var return_as_int: bool = false
-
 ## Initialize the stat.
-func _init(init_value: float, is_int: bool):
+func _init(init_value: float):
 	base_value    = init_value
-	return_as_int = is_int
 
 ## Raise the base value by the passed amount. Usually called when leveling up.
 func raise_base_value_by(raise_amount: float) -> void:
