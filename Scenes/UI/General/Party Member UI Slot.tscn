@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://5qu22b5cq405"]
+[gd_scene load_steps=5 format=3 uid="uid://5qu22b5cq405"]
 
 [ext_resource type="Script" path="res://Scripts/UI/General/PartyMemberUISlot.gd" id="1_rr7sj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ryxaa"]
+bg_color = Color(0.615686, 0.133333, 0.207843, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e70h4"]
+bg_color = Color(0.0588235, 0.321569, 0.729412, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e4idj"]
+bg_color = Color(0.72549, 0.94902, 1, 1)
 
 [node name="PartyMemberUISlot" type="PanelContainer" node_paths=PackedStringArray("char_name_label", "hp_bar", "sp_bar", "xp_bar")]
 custom_minimum_size = Vector2(200, 150)
@@ -34,6 +43,7 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
+theme_override_styles/fill = SubResource("StyleBoxFlat_ryxaa")
 value = 50.0
 
 [node name="SP Bar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
@@ -41,6 +51,7 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
+theme_override_styles/fill = SubResource("StyleBoxFlat_e70h4")
 value = 50.0
 
 [node name="XP Bar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
@@ -48,4 +59,5 @@ custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
+theme_override_styles/fill = SubResource("StyleBoxFlat_e4idj")
 value = 50.0

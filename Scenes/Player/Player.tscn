@@ -1,11 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://bc7v43o528ywf"]
+[gd_scene load_steps=15 format=3 uid="uid://bc7v43o528ywf"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerLocomotionController.gd" id="1_ney4i"]
 [ext_resource type="Script" path="res://Scripts/Player/CameraController.gd" id="1_x8v2e"]
 [ext_resource type="Script" path="res://Scripts/Player/Player Locomotion States/PLGround.gd" id="3_wdwin"]
 [ext_resource type="Script" path="res://Scripts/Player/Player Locomotion States/PLAir.gd" id="4_gfngo"]
 [ext_resource type="Script" path="res://Scripts/Creature/Combatant.gd" id="5_1uts1"]
-[ext_resource type="Script" path="res://Scripts/Stats/Stats.gd" id="6_41j6p"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerInputController.gd" id="6_tnric"]
 [ext_resource type="Script" path="res://Scripts/Creature/Skill/SkillHandler.gd" id="6_uijcs"]
 [ext_resource type="Resource" uid="uid://brfpqfn6tfjv4" path="res://Game Data/Skills/Test Projectile Attack.tres" id="7_654j6"]
@@ -16,9 +15,6 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_c34u5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_robhp"]
-
-[sub_resource type="Resource" id="Resource_iqd18"]
-script = ExtResource("6_41j6p")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jpmi0"]
 radius = 5.0
@@ -38,7 +34,6 @@ size = Vector3(0.25, 0.25, 1)
 shape = SubResource("CapsuleShape3D_robhp")
 
 [node name="Camera Rig" type="SpringArm3D" parent="." node_paths=PackedStringArray("aim_cast", "target")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 spring_length = 4.0
 margin = 0.2
 script = ExtResource("1_x8v2e")
@@ -64,10 +59,10 @@ script = ExtResource("4_gfngo")
 
 [node name="Combatant" type="Node" parent="."]
 script = ExtResource("5_1uts1")
-stats = SubResource("Resource_iqd18")
 
-[node name="SkillHandler" type="Node" parent="Combatant"]
+[node name="SkillHandler" type="Node" parent="Combatant" node_paths=PackedStringArray("combatant")]
 script = ExtResource("6_uijcs")
+combatant = NodePath("..")
 skills_to_instance = Array[Resource("res://Scripts/Creature/Skill/SkillData.gd")]([ExtResource("7_654j6")])
 
 [node name="PlayerInputController" type="Node" parent="."]

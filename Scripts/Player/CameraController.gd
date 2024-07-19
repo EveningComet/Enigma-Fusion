@@ -4,7 +4,7 @@ class_name CameraController extends SpringArm3D
 @export var aim_cast: RayCast3D
 
 @export var target: Node3D
-var offset: Vector3 = Vector3(0.0, 1.5, 0.0)
+@export var offset: Vector3 = Vector3(0.0, 1.5, 0.0)
 var wrap_0:   float = 0.0
 var wrap_max: float = 360.0
 

@@ -3,6 +3,9 @@ class_name SkillHandler extends Node
 
 signal skill_executed(skill: SkillInstance)
 
+## The attached character.
+@export var combatant: Combatant
+
 @export var skills_to_instance: Array[SkillData]
 
 ## Houses the current, active skills on a character.
@@ -24,7 +27,11 @@ func handle_cooldowns(delta: float) -> void:
 func activate_skill(s_to_activate: SkillInstance) -> void:
 	if s_to_activate.is_cooldown_finished() == false:
 		return
+	
+	# TODO: Prevent usage of the skill if there is not enough sp
 		
 	skill_executed.emit(s_to_activate)
 	s_to_activate.skill.execute(get_parent().get_parent(), [])
 	s_to_activate.reset()
+	
+	combatant.stats.remove_sp(s_to_activate.skill.base_cost)

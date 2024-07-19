@@ -7,9 +7,14 @@ class_name PartyMemberUISlot extends PanelContainer
 @export var curr_char: Combatant:
 	get: return curr_char
 	set(value):
-		curr_char = value
-		# TODO: Subscribe to stat changing events.
-		char_name_label.set_text(curr_char.name)
+		if curr_char != null:
+			curr_char.stat_changed.disconnect( on_stat_changed )
+		
+		if value != null:
+			curr_char = value
+			char_name_label.set_text(curr_char.get_parent().name)
+			curr_char.stat_changed.connect( on_stat_changed )
+			on_stat_changed(curr_char)
 
 @export var char_name_label: Label
 
@@ -18,6 +23,7 @@ class_name PartyMemberUISlot extends PanelContainer
 @export var sp_bar: ProgressBar
 @export var xp_bar: ProgressBar
 
-func on_stat_changed() -> void:
+func on_stat_changed(combatant: Combatant) -> void:
 	# Update the bar if the health, special points, or experience changed
-	curr_char
+	hp_bar.value = (float(curr_char.stats.get_curr_hp()) / curr_char.stats.get_max_hp()) * 100
+	sp_bar.value = (float(curr_char.stats.get_curr_sp()) / curr_char.stats.get_max_sp()) * 100
