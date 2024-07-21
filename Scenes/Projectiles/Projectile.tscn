@@ -10,6 +10,7 @@ size = Vector3(1, 1, 2)
 
 [node name="Projectile" type="CharacterBody3D"]
 script = ExtResource("1_qq6yh")
+move_speed = 25.0
 
 [node name="GFX" type="Node3D" parent="."]
 
