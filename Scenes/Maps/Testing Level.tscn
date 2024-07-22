@@ -101,7 +101,7 @@ transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107
 script = ExtResource("9_dnqrv")
 time_stop_area_prefab = ExtResource("10_5msbi")
 
-[node name="Rotating Cube" type="StaticBody3D" parent="."]
+[node name="Rotating Cube" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 4, -26)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Rotating Cube"]
