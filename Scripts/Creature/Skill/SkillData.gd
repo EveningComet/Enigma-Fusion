@@ -5,6 +5,8 @@ class_name SkillData extends Resource
 @export var localization_name: String = "New Skill"
 @export_multiline var localization_description: String = "New description."
 
+@export var icon: Texture2D
+
 @export_category("Definitions")
 ## Can this skill be activated?
 @export var is_passive: bool = false
