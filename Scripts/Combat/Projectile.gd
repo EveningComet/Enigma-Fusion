@@ -9,7 +9,10 @@ var curr_lifetime:        float = 0.0
 
 ## The object that shot this projectile. Used to prevent projectiles from hurting
 ## the activator.
-var shooter: Node3D = null # TODO: System to prevent projectiles from damaging allies.
+var shooter: Node3D = null
+# TODO: Since we're storing the shooter here, we can easily get the shooter
+# for applying on hit effects for traits.
+# TODO: System to prevent projectiles from damaging allies.
 
 var direction: Vector3 = Vector3.ZERO
 

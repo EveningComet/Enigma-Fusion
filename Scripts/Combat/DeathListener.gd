@@ -1,7 +1,6 @@
 ## Responsible for keeping track of characters dying.
 class_name DeathListener extends Node
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Eventbus.hp_depleted.connect( on_combatant_dying )
