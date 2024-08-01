@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="CreatureBlueprint" load_steps=3 format=3 uid="uid://c17263pvrq22l"]
+[gd_resource type="Resource" script_class="CreatureBlueprint" load_steps=3 format=3 uid="uid://nm54grw7twvj"]
 
 [ext_resource type="Script" path="res://Scripts/Creature/CreatureBlueprint.gd" id="1_3h2qa"]
-[ext_resource type="Resource" path="res://Game Data/Creature Data/Test/Test Creature Timeline.dtl" id="2_ko61u"]
+[ext_resource type="Resource" path="res://Game Data/Creature Data/Test/Test Creature Timeline.dtl" id="2_hbw6e"]
 
 [resource]
 script = ExtResource("1_3h2qa")
@@ -10,5 +10,5 @@ localization_description = "This guy has the realest, deepest lore."
 starting_vitality = 5
 starting_technique = 5
 starting_will = 5
-traits = Array[Resource("res://Scripts/Creature/Trait.gd")]([])
-sequence = ExtResource("2_ko61u")
+traits = Array[Resource("res://Scripts/Creature/Trait/Trait.gd")]([])
+sequence = ExtResource("2_hbw6e")

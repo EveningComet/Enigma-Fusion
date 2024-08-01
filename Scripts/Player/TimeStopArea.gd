@@ -14,7 +14,11 @@ func on_body_entered(body) -> void:
 	if body.has_node("Rotator"):
 		body.get_node("Rotator").set_physics_process(false)
 
+	# TODO: Stop processing for certain player nodes.
+
 func on_body_exited(body) -> void:
 	targets.erase(body)
 	if body.has_node("Rotator"):
 		body.get_node("Rotator").set_physics_process(true)
+	
+	# TODO: Re-enable required player nodes.

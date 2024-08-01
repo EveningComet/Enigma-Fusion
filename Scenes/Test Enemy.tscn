@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/Creature/Locomotion/LocomotionController.gd" id="3_jnq1n"]
 [ext_resource type="Script" path="res://Scripts/Creature/CreatureInstance.gd" id="4_5mjai"]
 [ext_resource type="Script" path="res://Scripts/Creature/Locomotion/States/LAir.gd" id="4_nfob3"]
-[ext_resource type="Resource" uid="uid://c17263pvrq22l" path="res://Game Data/Creature Data/Test/Test Creature.tres" id="5_0sifs"]
+[ext_resource type="Resource" uid="uid://nm54grw7twvj" path="res://Game Data/Creature Data/Test/Test Creature.tres" id="5_0sifs"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_8fqx0"]
 

@@ -10,7 +10,15 @@ class_name CreatureBlueprint extends Resource
 @export var starting_technique: int = 5
 @export var starting_will:      int = 5
 
+# Attributes boost on level up
+@export var base_vitality_growth:  int = 5
+@export var base_technique_growth: int = 5
+@export var base_will_growth:      int = 5
+
 @export var traits: Array[Trait] = []
+
+@export_category("Drops")
+@export var exp_on_death: int = 50
 
 @export_category("Dialogue")
 # TODO: Multiple sequences.

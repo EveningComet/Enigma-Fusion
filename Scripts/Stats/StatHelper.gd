@@ -1,6 +1,10 @@
 ## Stores values and helpers for stats.
 class_name StatHelper
 
+## When fusing a character, this is what the parent growth stats will
+## be divided by.
+const STAT_GROWTH_FUSION_SCALER: int = 2
+
 ## Used for indexing and accessing certain stats.
 enum StatTypes {
 	# Attributes
@@ -40,6 +44,14 @@ enum DamageTypes {
 	Air,
 	Pure
 }
+
+## Get the growth rates for a creature and account for fusion.
+static func get_attribute_growth_rate(
+	base_bp:  CreatureBlueprint,
+	parent_a: CreatureBlueprint = null,
+	parent_b: CreatureBlueprint = null
+):
+	pass
 
 ## Wrapper to work with/around resistances.
 static var damage_to_res_map: Dictionary = {

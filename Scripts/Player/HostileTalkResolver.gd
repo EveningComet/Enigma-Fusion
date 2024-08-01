@@ -25,6 +25,7 @@ func on_begin_conversation(target) -> void:
 	curr_time_stop_area.monitoring = true
 	
 	# Start the conversation
+	# TODO: Change what node is used here.
 	if curr_target.has_node("CreatureInstance") == true:
 		Dialogic.signal_event.connect(on_enemy_conversation_ended)
 		Dialogic.start(curr_target.get_node("CreatureInstance").blueprint.sequence)
