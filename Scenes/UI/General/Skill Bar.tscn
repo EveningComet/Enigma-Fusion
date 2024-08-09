@@ -3,11 +3,13 @@
 [ext_resource type="Script" path="res://Scripts/UI/Skill UI/SkillBar.gd" id="1_spo65"]
 [ext_resource type="PackedScene" uid="uid://biiq1vtgyyvgg" path="res://Scenes/UI/General/Skill Slot.tscn" id="2_6gjmm"]
 
-[node name="Skill Bar" type="PanelContainer"]
+[node name="Skill Bar" type="PanelContainer" node_paths=PackedStringArray("skill_slot_container")]
 custom_minimum_size = Vector2(100, 50)
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_spo65")
+skill_slot_container = NodePath("MarginContainer/HBoxContainer")
+skill_slot_prefab = ExtResource("2_6gjmm")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -20,26 +22,3 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 theme_override_constants/separation = 5
 alignment = 1
-
-[node name="Skill Slot" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_6gjmm")]
-layout_mode = 2
-
-[node name="Skill Slot2" parent="MarginContainer/HBoxContainer" node_paths=PackedStringArray("display_icon") instance=ExtResource("2_6gjmm")]
-layout_mode = 2
-display_icon = NodePath("../Skill Slot/MarginContainer/Display Icon")
-
-[node name="Skill Slot3" parent="MarginContainer/HBoxContainer" node_paths=PackedStringArray("display_icon") instance=ExtResource("2_6gjmm")]
-layout_mode = 2
-display_icon = NodePath("../Skill Slot/MarginContainer/Display Icon")
-
-[node name="Skill Slot4" parent="MarginContainer/HBoxContainer" node_paths=PackedStringArray("display_icon") instance=ExtResource("2_6gjmm")]
-layout_mode = 2
-display_icon = NodePath("../Skill Slot/MarginContainer/Display Icon")
-
-[node name="Skill Slot5" parent="MarginContainer/HBoxContainer" node_paths=PackedStringArray("display_icon") instance=ExtResource("2_6gjmm")]
-layout_mode = 2
-display_icon = NodePath("../Skill Slot/MarginContainer/Display Icon")
-
-[node name="Skill Slot6" parent="MarginContainer/HBoxContainer" node_paths=PackedStringArray("display_icon") instance=ExtResource("2_6gjmm")]
-layout_mode = 2
-display_icon = NodePath("../Skill Slot/MarginContainer/Display Icon")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bc7v43o528ywf"]
+[gd_scene load_steps=16 format=3 uid="uid://bc7v43o528ywf"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerLocomotionController.gd" id="1_ney4i"]
 [ext_resource type="Script" path="res://Scripts/Player/CameraController.gd" id="1_x8v2e"]
@@ -6,15 +6,19 @@
 [ext_resource type="Script" path="res://Scripts/Player/Player Locomotion States/PLAir.gd" id="4_gfngo"]
 [ext_resource type="Script" path="res://Scripts/Creature/Combatant.gd" id="5_1uts1"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerInputController.gd" id="6_tnric"]
-[ext_resource type="Script" path="res://Scripts/Creature/Skill/SkillHandler.gd" id="6_uijcs"]
 [ext_resource type="Resource" uid="uid://brfpqfn6tfjv4" path="res://Game Data/Skills/Test Projectile Attack.tres" id="7_654j6"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerHostileTalkHandler.gd" id="7_gswu2"]
-[ext_resource type="Script" path="res://Scripts/Player/PlayerSkillActivator.gd" id="9_wq3v5"]
+[ext_resource type="Script" path="res://Scripts/Creature/Skill/SkillInstance.gd" id="8_vly3f"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerSkillHandler.gd" id="9_wq3v5"]
 [ext_resource type="PackedScene" uid="uid://dewqtqbx2j88g" path="res://Scenes/Player/Hostile Talk Starter.tscn" id="11_hfac6"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_c34u5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_robhp"]
+
+[sub_resource type="Resource" id="Resource_0cmi4"]
+script = ExtResource("8_vly3f")
+skill = ExtResource("7_654j6")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jpmi0"]
 radius = 5.0
@@ -61,18 +65,14 @@ script = ExtResource("4_gfngo")
 [node name="Combatant" type="Node" parent="."]
 script = ExtResource("5_1uts1")
 
-[node name="SkillHandler" type="Node" parent="Combatant" node_paths=PackedStringArray("combatant")]
-script = ExtResource("6_uijcs")
-combatant = NodePath("..")
-skills_to_instance = Array[Resource("res://Scripts/Creature/Skill/SkillData.gd")]([ExtResource("7_654j6")])
-
 [node name="PlayerInputController" type="Node" parent="."]
 script = ExtResource("6_tnric")
 
-[node name="PlayerSkillActivator" type="Node" parent="." node_paths=PackedStringArray("camera_controller", "skill_handler")]
+[node name="PlayerSkillHandler" type="Node" parent="." node_paths=PackedStringArray("camera_controller", "combatant")]
 script = ExtResource("9_wq3v5")
 camera_controller = NodePath("../Camera Rig")
-skill_handler = NodePath("../Combatant/SkillHandler")
+active_skills = Array[ExtResource("8_vly3f")]([SubResource("Resource_0cmi4")])
+combatant = NodePath("../Combatant")
 
 [node name="Interaction Radius" type="Area3D" parent="."]
 
@@ -80,10 +80,10 @@ skill_handler = NodePath("../Combatant/SkillHandler")
 shape = SubResource("SphereShape3D_jpmi0")
 disabled = true
 
-[node name="PlayerHostileTalkHandler" type="Node" parent="." node_paths=PackedStringArray("camera_controller", "cooldown_timer", "interaction_radius")]
+[node name="PlayerHostileTalkHandler" type="Node" parent="." node_paths=PackedStringArray("camera_controller", "timer", "interaction_radius")]
 script = ExtResource("7_gswu2")
 camera_controller = NodePath("../Camera Rig")
-cooldown_timer = NodePath("Timer")
+timer = NodePath("Timer")
 hostile_talk_starter_prefab = ExtResource("11_hfac6")
 cooldown_time = 1.0
 interaction_radius = NodePath("../Interaction Radius")

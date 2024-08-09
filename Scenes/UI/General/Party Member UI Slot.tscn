@@ -1,12 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://5qu22b5cq405"]
+[gd_scene load_steps=6 format=3 uid="uid://5qu22b5cq405"]
 
-[ext_resource type="Script" path="res://Scripts/UI/General/PartyMemberUISlot.gd" id="1_rr7sj"]
+[ext_resource type="Script" path="res://Scripts/UI/HUD/PartyMemberUISlot.gd" id="1_th2vc"]
+[ext_resource type="PackedScene" uid="uid://bhd6x02ceo5jx" path="res://Scenes/UI/General/Vitalbar.tscn" id="2_amait"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ryxaa"]
-bg_color = Color(0.615686, 0.133333, 0.207843, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwy2j"]
+bg_color = Color(0.4, 0.8, 0.4, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e70h4"]
-bg_color = Color(0.0588235, 0.321569, 0.729412, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xu7g3"]
+bg_color = Color(0, 0.4, 0.8, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e4idj"]
 bg_color = Color(0.72549, 0.94902, 1, 1)
@@ -15,10 +16,10 @@ bg_color = Color(0.72549, 0.94902, 1, 1)
 custom_minimum_size = Vector2(200, 150)
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_rr7sj")
+script = ExtResource("1_th2vc")
 char_name_label = NodePath("MarginContainer/VBoxContainer/Char Name")
-hp_bar = NodePath("MarginContainer/VBoxContainer/HP Bar")
-sp_bar = NodePath("MarginContainer/VBoxContainer/SP Bar")
+hp_bar = NodePath("MarginContainer/VBoxContainer/Hp Bar")
+sp_bar = NodePath("MarginContainer/VBoxContainer/Sp Bar")
 xp_bar = NodePath("MarginContainer/VBoxContainer/XP Bar")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -38,26 +39,17 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Char Name"
 
-[node name="HP Bar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
+[node name="Hp Bar" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_amait")]
 layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_styles/fill = SubResource("StyleBoxFlat_ryxaa")
-value = 50.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_cwy2j")
 
-[node name="SP Bar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
+[node name="Sp Bar" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_amait")]
 layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_styles/fill = SubResource("StyleBoxFlat_e70h4")
-value = 50.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_xu7g3")
 
 [node name="XP Bar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 10)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_styles/fill = SubResource("StyleBoxFlat_e4idj")
-value = 50.0

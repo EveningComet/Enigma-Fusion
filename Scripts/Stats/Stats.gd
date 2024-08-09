@@ -21,7 +21,7 @@ func initialize() -> void:
 	# Vitals
 	stats[StatHelper.StatTypes.MaxHP]     = Stat.new(50)
 	stats[StatHelper.StatTypes.CurrentHP] = get_max_hp()
-	stats[StatHelper.StatTypes.MaxSP]     = Stat.new(50)
+	stats[StatHelper.StatTypes.MaxSP]     = Stat.new(35)
 	stats[StatHelper.StatTypes.CurrentSP] = get_max_sp()
 	
 	# Other stats

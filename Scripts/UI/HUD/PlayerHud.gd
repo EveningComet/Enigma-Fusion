@@ -4,6 +4,8 @@ class_name PlayerHud extends Control
 ## The node that houses the player character.
 @export var player_node: Node3D
 
+@export var skill_bar: SkillBar
+
 @export var party_member_slot_prefab: PackedScene
 
 ## Stores the visuals of the displayed party.
@@ -17,6 +19,9 @@ func _ready() -> void:
 	hostile_talk_slot.set_player_hostile_talk_handler(
 		hostile_talk_handler
 	)
+	
+	# Set up the skillbar
+	skill_bar.set_player_skills(player_node.get_node("PlayerSkillHandler"))
 
 func on_active_party_changed(curr_party: Array) -> void:
 	# Clean out the old slots
@@ -25,7 +30,6 @@ func on_active_party_changed(curr_party: Array) -> void:
 		
 	# Create a slot for each party member
 	for pm in curr_party:
-		# Create the slot
 		var pmui_slot: PartyMemberUISlot = party_member_slot_prefab.instantiate()
 		var combatant: Combatant = pm.get_node("Combatant")
 		pmui_slot.curr_char = combatant

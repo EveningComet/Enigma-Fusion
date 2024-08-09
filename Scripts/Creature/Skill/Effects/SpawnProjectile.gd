@@ -14,7 +14,7 @@ func execute(activator, targets) -> void:
 	var aim_dir:    Vector3 = Vector3.ZERO
 	var target_dir: Vector3 = Vector3.ZERO
 	if activator.has_node("PlayerLocomotionController"):
-		target_dir = activator.get_node("PlayerSkillActivator").get_aim_dir()
+		target_dir = activator.get_node("PlayerSkillHandler").get_aim_dir()
 	
 	aim_dir = (target_dir - origin).normalized()
 	projectile.global_position = origin

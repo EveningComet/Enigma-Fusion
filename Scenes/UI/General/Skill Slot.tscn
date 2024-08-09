@@ -1,14 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://biiq1vtgyyvgg"]
 
-[ext_resource type="Script" path="res://Scripts/UI/Skill UI/SkillSlotUI.gd" id="1_j2cut"]
-[ext_resource type="Texture2D" uid="uid://bdu5ksrpwk46w" path="res://icon.svg" id="2_bvpkb"]
+[ext_resource type="Script" path="res://Scripts/UI/Skill UI/SkillSlot.gd" id="1_hq8ev"]
 
-[node name="Skill Slot" type="PanelContainer" node_paths=PackedStringArray("display_icon")]
-custom_minimum_size = Vector2(48, 48)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_meyyn"]
+bg_color = Color(0, 0, 0, 0.705882)
+
+[node name="Skill Slot" type="PanelContainer" node_paths=PackedStringArray("icon", "progress_bar", "time_label")]
+custom_minimum_size = Vector2(64, 64)
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_j2cut")
-display_icon = NodePath("MarginContainer/Display Icon")
+script = ExtResource("1_hq8ev")
+icon = NodePath("MarginContainer/Display Icon")
+progress_bar = NodePath("MarginContainer/Sweep")
+time_label = NodePath("MarginContainer/Sweep/MarginContainer/Time Label")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -19,6 +23,27 @@ theme_override_constants/margin_bottom = 5
 
 [node name="Display Icon" type="TextureRect" parent="MarginContainer"]
 layout_mode = 2
-texture = ExtResource("2_bvpkb")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="Sweep" type="ProgressBar" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/fill = SubResource("StyleBoxFlat_meyyn")
+show_percentage = false
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Sweep"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Time Label" type="Label" parent="MarginContainer/Sweep/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+text = "4.2"
+horizontal_alignment = 1

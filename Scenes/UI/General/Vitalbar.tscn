@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhd6x02ceo5jx"]
+
+[ext_resource type="Script" path="res://Scripts/UI/HUD/Vitalbar.gd" id="1_k7puy"]
+
+[node name="Vitalbar" type="ProgressBar" node_paths=PackedStringArray("value_displayer")]
+custom_minimum_size = Vector2(200, 30)
+offset_right = 200.0
+offset_bottom = 25.0
+show_percentage = false
+script = ExtResource("1_k7puy")
+value_displayer = NodePath("MarginContainer/Value Label")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Value Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 20
+text = "42"
+horizontal_alignment = 1
+vertical_alignment = 1

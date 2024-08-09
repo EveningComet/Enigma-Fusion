@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="SkillData" load_steps=5 format=3 uid="uid://brfpqfn6tfjv4"]
+[gd_resource type="Resource" script_class="SkillData" load_steps=6 format=3 uid="uid://brfpqfn6tfjv4"]
 
 [ext_resource type="PackedScene" uid="uid://coel4pxg5wefi" path="res://Scenes/Projectiles/Projectile.tscn" id="1_8utjy"]
 [ext_resource type="Script" path="res://Scripts/Creature/Skill/SkillData.gd" id="1_rc8co"]
 [ext_resource type="Script" path="res://Scripts/Creature/Skill/Effects/SpawnProjectile.gd" id="1_uhxv8"]
+[ext_resource type="Texture2D" uid="uid://bdu5ksrpwk46w" path="res://icon.svg" id="3_lovce"]
 
 [sub_resource type="Resource" id="Resource_spaa7"]
 script = ExtResource("1_uhxv8")
@@ -14,6 +15,7 @@ use_special_stat = true
 script = ExtResource("1_rc8co")
 localization_name = "Test Projectile Attack"
 localization_description = "An attakc meant to test firing projectiles."
+icon = ExtResource("3_lovce")
 is_passive = false
 base_cooldown = 0.5
 base_cost = 5

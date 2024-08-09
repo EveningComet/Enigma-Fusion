@@ -1,37 +1,48 @@
-## Stores a collection of monitored_skills for a character.
+## Stores the skills for a character.
 class_name SkillHandler extends Node
 
-signal skill_executed(skill: SkillInstance)
+## The skills the player currently has on their character.
+@export var curr_skills: Array[SkillInstance] = []
 
-## The attached character.
+## The skills in the player's current activatable skills.
+@export var active_skills: Array[SkillInstance] = []
+
+## Used as a quick way to get a character's stats.
 @export var combatant: Combatant
 
-@export var skills_to_instance: Array[SkillData]
-
-## Houses the current, active skills on a character.
-var monitored_skills: Array[SkillInstance]
-
 func _ready() -> void:
-	for sd: SkillData in skills_to_instance:
-		var si: SkillInstance = SkillInstance.new(sd)
-		monitored_skills.append(si)
+	# Create empty slots to allow for swapping and the like
+	var copy_of_active_skills: Array[SkillInstance] = []
+	copy_of_active_skills.append_array(active_skills)
+	active_skills.clear()
+	for i in Utils.MAX_ACTIVE_SKILLS:
+		active_skills.append( null )
+	for i in range(copy_of_active_skills.size()):
+		active_skills.insert(i, copy_of_active_skills[i])
 
 func _physics_process(delta: float) -> void:
-	handle_cooldowns(delta)
+	update_active_skills( delta )
 
-func handle_cooldowns(delta: float) -> void:
-	for si: SkillInstance in monitored_skills:
-		if si.skill.is_passive == false:
-			si.tick(delta)
+func update_active_skills(delta: float) -> void:
+	for s in active_skills:
+		if s != null:
+			s.tick(delta)
 
-func activate_skill(s_to_activate: SkillInstance) -> void:
-	if s_to_activate.is_cooldown_finished() == false:
-		return
-	
-	# TODO: Prevent usage of the skill if there is not enough sp
+## Attempt to activate a usable skill.
+func activate_skill(index: int) -> void:
+	var skill_instance: SkillInstance = active_skills[index]
+	if skill_instance != null:
+		_was_skill_use_successful(skill_instance)
+
+## Determines if the skill use was successful.
+func _was_skill_use_successful(skill_instance: SkillInstance) -> bool:
+	var curr_sp: int = combatant.stats.get_curr_sp()
+	if curr_sp >= skill_instance.skill.base_cost and skill_instance.is_cooldown_finished() == true:
+		skill_instance.execute(
+			get_parent(), []
+		)
+		skill_instance.reset_cooldown()
 		
-	skill_executed.emit(s_to_activate)
-	s_to_activate.skill.execute(get_parent().get_parent(), [])
-	s_to_activate.reset()
+		return true
 	
-	combatant.stats.remove_sp(s_to_activate.skill.base_cost)
+	return false

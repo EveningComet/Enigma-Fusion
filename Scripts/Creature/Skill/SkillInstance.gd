@@ -1,19 +1,28 @@
-## Stores an instance of a skill.
+## Stores an instance of a skill to allow upgrades.
 class_name SkillInstance extends Resource
 
-var skill: SkillData
+## Used to tell other things that the attached skill is being used.
+signal skill_executed(si: SkillInstance)
 
-var curr_cooldown: float = 0.0
+## The attached skill.
+@export var skill: SkillData
 
-func _init(skill_to_instance: SkillData) -> void:
-	skill = skill_to_instance
+var curr_cooldown: float = 0.0:
+	get: return curr_cooldown
+	set(value):
+		curr_cooldown = value
+		curr_cooldown = clamp(curr_cooldown, 0.0, skill.base_cooldown)
 
 func tick(delta: float) -> void:
 	curr_cooldown -= delta
-	curr_cooldown = clamp(curr_cooldown, 0.0, skill.base_cooldown)
+
+func reset_cooldown() -> void:
+	curr_cooldown = skill.base_cooldown
 
 func is_cooldown_finished() -> bool:
 	return curr_cooldown <= 0.0
 
-func reset() -> void:
-	curr_cooldown = skill.base_cooldown
+## Quick way to execute the attached skill.
+func execute(activator, targets) -> void:
+	skill_executed.emit(self)
+	skill.execute(activator, targets)

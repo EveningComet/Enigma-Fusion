@@ -19,11 +19,15 @@ class_name PartyMemberUISlot extends PanelContainer
 @export var char_name_label: Label
 
 # TODO: Reformat the bars to a reusable UI component.
-@export var hp_bar: ProgressBar
-@export var sp_bar: ProgressBar
+@export var hp_bar: Vitalbar
+@export var sp_bar: Vitalbar
 @export var xp_bar: ProgressBar
 
 func on_stat_changed(combatant: Combatant) -> void:
 	# Update the bar if the health, special points, or experience changed
-	hp_bar.value = (float(curr_char.stats.get_curr_hp()) / curr_char.stats.get_max_hp()) * 100
-	sp_bar.value = (float(curr_char.stats.get_curr_sp()) / curr_char.stats.get_max_sp()) * 100
+	hp_bar.update_display(
+		curr_char.stats.get_curr_hp(), curr_char.stats.get_max_hp()
+	)
+	sp_bar.update_display(
+		curr_char.stats.get_curr_sp(), curr_char.stats.get_max_sp()
+	)
