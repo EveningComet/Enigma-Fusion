@@ -41,6 +41,7 @@ func _was_skill_use_successful(skill_instance: SkillInstance) -> bool:
 		skill_instance.execute(
 			get_parent(), []
 		)
+		combatant.stats.remove_sp(skill_instance.skill.base_cost)
 		skill_instance.reset_cooldown()
 		
 		return true
