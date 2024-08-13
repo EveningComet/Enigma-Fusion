@@ -6,10 +6,8 @@ var cb: CharacterBody3D
 
 # Air, Speed, & Friction
 @export var move_speed:      float = 10   # How fast this state moves
-@export var ground_accel:    float = 60.0
-@export var ground_friction: float = 50.0
-@export var air_accel:       float = 20.0
-@export var air_friction:    float = 20.0
+@export var acceleration:    float = 60.0
+@export var friction:        float = 50.0
 @export var rot_speed:       float = 10.0 # How fast we rotate
 
 # Jump & gravity

@@ -46,9 +46,9 @@ func handle_move(delta: float) -> void:
 
 func apply_movement(delta: float) -> void:
 	if input_dir != Vector3.ZERO:
-		velocity.x = velocity.move_toward(input_dir * move_speed, air_accel * delta).x
-		velocity.z = velocity.move_toward(input_dir * move_speed, air_accel * delta).z
+		velocity.x = velocity.move_toward(input_dir * move_speed, acceleration * delta).x
+		velocity.z = velocity.move_toward(input_dir * move_speed, acceleration * delta).z
 
 func apply_friction(delta: float) -> void:
 	if input_dir == Vector3.ZERO:
-		velocity = velocity.move_toward(Vector3.ZERO, air_friction * delta)
+		velocity = velocity.move_toward(Vector3.ZERO, friction * delta)
