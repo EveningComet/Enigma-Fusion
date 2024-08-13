@@ -30,6 +30,7 @@ func on_begin_conversation(target) -> void:
 		Dialogic.signal_event.connect(on_enemy_conversation_ended)
 		Dialogic.start(curr_target.get_node("CreatureInstance").blueprint.sequence)
 		Dialogic.timeline_ended.connect( on_dialogic_dialogue_ended )
+		Globals.is_movement_disabled = true
 
 func on_dialogic_dialogue_ended() -> void:
 	# Clean up
@@ -38,6 +39,11 @@ func on_dialogic_dialogue_ended() -> void:
 	curr_time_stop_area.queue_free()
 	curr_time_stop_area = null
 	curr_target = null
+	
+	# Wait a tiny bit to prevent jumping
+	# TODO: Wait for a physics frame instead?
+	await get_tree().create_timer(0.1, false, true).timeout
+	Globals.is_movement_disabled = false
 
 func on_enemy_conversation_ended(argument: String) -> void:
 	if argument.to_lower().contains("success") == true:

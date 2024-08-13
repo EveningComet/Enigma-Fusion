@@ -51,9 +51,10 @@ current = true
 [node name="Aim Cast" type="RayCast3D" parent="Camera Rig/Camera3D"]
 target_position = Vector3(0, 0, -1000)
 
-[node name="PlayerLocomotionController" type="Node" parent="." node_paths=PackedStringArray("camera_controller")]
+[node name="PlayerLocomotionController" type="Node" parent="." node_paths=PackedStringArray("camera_controller", "input_controller")]
 script = ExtResource("1_ney4i")
 camera_controller = NodePath("../Camera Rig")
+input_controller = NodePath("../PlayerInputController")
 initial_state = NodePath("PLGround")
 
 [node name="PLGround" type="Node" parent="PlayerLocomotionController"]

@@ -2,6 +2,7 @@
 class_name PlayerLocomotionController extends StateMachine
 
 @export var camera_controller: CameraController
+@export var input_controller:  PlayerInputController
 
 ## The parent character body that will be controlled.
 var cb: CharacterBody3D

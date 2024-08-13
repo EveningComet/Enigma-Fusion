@@ -25,25 +25,35 @@ var velocity:  Vector3 = Vector3.ZERO
 var input_dir: Vector3 = Vector3.ZERO
 
 ## Handle our animations.
-var animation_tree: AnimationTree 
+var animation_tree: AnimationTree
+
+var input_controller: PlayerInputController
 
 func setup_state(new_sm: PlayerLocomotionController) -> void:
 	super(new_sm)
-	cb             = new_sm.cb
+	cb               = new_sm.cb
+	input_controller = new_sm.input_controller
 
 func handle_animations(delta: float) -> void:
 	pass
 
 func physics_update(delta: float) -> void:
+	get_input_vector()
 	handle_move( delta )
+
+func get_input_vector() -> void:
+	# Get our movement value, adjusted to work with controllers
+	input_dir = Vector3.ZERO
+	input_dir.x = input_controller.input_dir.x
+	input_dir.z = input_controller.input_dir.z
+	
+	# Adjust the input based on where we're looking
+	input_dir = (input_dir.x * cb.transform.basis.x) + (input_dir.z * cb.transform.basis.z)
 
 func handle_move(delta: float) -> void:
 	pass
 
 func handle_gravity(delta: float) -> void:
-	pass
-
-func get_input_vector() -> void:
 	pass
 
 func apply_movement(delta: float) -> void:
