@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="SkillData" load_steps=6 format=3 uid="uid://brfpqfn6tfjv4"]
+[gd_resource type="Resource" script_class="SkillData" load_steps=7 format=3 uid="uid://brfpqfn6tfjv4"]
 
 [ext_resource type="PackedScene" uid="uid://coel4pxg5wefi" path="res://Scenes/Projectiles/Projectile.tscn" id="1_8utjy"]
 [ext_resource type="Script" path="res://Scripts/Creature/Skill/SkillData.gd" id="1_rc8co"]
+[ext_resource type="Script" path="res://Scripts/Creature/Skill/SkillEffect.gd" id="1_sv2ek"]
 [ext_resource type="Script" path="res://Scripts/Creature/Skill/Effects/SpawnProjectile.gd" id="1_uhxv8"]
 [ext_resource type="Texture2D" uid="uid://bdu5ksrpwk46w" path="res://icon.svg" id="3_lovce"]
 
@@ -20,4 +21,4 @@ is_passive = false
 base_cooldown = 0.5
 base_cost = 0
 execution_time = 0.0
-effects = Array[Resource("res://Scripts/Creature/Skill/SkillEffect.gd")]([SubResource("Resource_spaa7")])
+effects = Array[ExtResource("1_sv2ek")]([SubResource("Resource_spaa7")])
