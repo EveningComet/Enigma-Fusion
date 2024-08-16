@@ -14,6 +14,12 @@ func _ready():
 	
 	# Allow gamepad controls
 	button_holder.get_child(0).grab_focus()
+	
+	# TODO: Testing. Delete when no longer needed.
+	var creature_blueprint = CreatureBlueprint.new()
+	creature_blueprint.localization_name = "Jimbo"
+	var creature = Utils.create_creature(creature_blueprint)
+	print("MainMenuController :: ", creature.instance_data.base_blueprint.localization_name)
 
 func on_start_game_pressed() -> void:
 	SceneManager.change_scene(game_scene_path)

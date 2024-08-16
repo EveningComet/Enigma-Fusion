@@ -31,6 +31,6 @@ func on_active_party_changed(curr_party: Array) -> void:
 	# Create a slot for each party member
 	for pm in curr_party:
 		var pmui_slot: PartyMemberUISlot = party_member_slot_prefab.instantiate()
-		var combatant: Combatant = pm.get_node("Combatant")
+		var combatant: Combatant = pm
 		pmui_slot.curr_char = combatant
 		party_container.add_child(pmui_slot)

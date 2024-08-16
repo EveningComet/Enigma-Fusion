@@ -9,11 +9,12 @@ const MAX_ACTIVE_TEAM_SIZE: int = 6
 ## player have at once?
 var max_roster_size: int = 6
 
-# TODO: Data type for the array.
-var active_party: Array = []
-var roster: Array     = []
+var active_party: Array[Combatant] = []
 
-func add_to_roster(character) -> void:
+## The characters not currently being used by the player.
+var roster: Array = []
+
+func add_to_roster(character: Combatant) -> void:
 	# Do not add characters that already exist within the roster
 	if roster.has(character) == true:
 		return
@@ -22,7 +23,7 @@ func add_to_roster(character) -> void:
 	if active_party.size() < MAX_ACTIVE_TEAM_SIZE:
 		add_to_active_party(character)
 
-func add_to_active_party(character_to_add) -> void:
+func add_to_active_party(character_to_add: Combatant) -> void:
 	active_party.append(character_to_add)
 	Eventbus.active_party_changed.emit( active_party )
 

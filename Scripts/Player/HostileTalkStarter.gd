@@ -26,7 +26,7 @@ func set_direction(dir: Vector3) -> void:
 func on_body_entered(body) -> void:
 	if body.has_node("Combatant"):
 		var combatant: Combatant = body.get_node("Combatant")
-		if PlayerRosterController.contains_character(body) == false:
+		if PlayerRosterController.contains_character(combatant) == false:
 			
 			# Collided with an enemy the player can talk to, fire the event
 			Eventbus.begin_conversation_with_enemy.emit(body)

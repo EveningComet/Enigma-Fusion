@@ -6,9 +6,10 @@ class_name PlayerSkillHandler extends SkillHandler
 
 func _ready() -> void:
 	super()
+	
 	#TODO: Find a cleaner way to do this.
 	await get_tree().physics_frame
-	PlayerRosterController.add_to_roster(get_parent())
+	PlayerRosterController.add_to_roster(get_parent().get_node("Combatant"))
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("use_skill_slot_1"):

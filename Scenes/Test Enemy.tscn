@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cw6v7bqh7go64"]
+[gd_scene load_steps=12 format=3 uid="uid://cw6v7bqh7go64"]
 
 [ext_resource type="Script" path="res://Scripts/Creature/Combatant.gd" id="3_4lt0f"]
 [ext_resource type="Script" path="res://Scripts/Creature/Locomotion/LocomotionController.gd" id="3_jnq1n"]
 [ext_resource type="Script" path="res://Scripts/Creature/CreatureInstance.gd" id="4_5mjai"]
 [ext_resource type="Script" path="res://Scripts/Creature/Locomotion/States/LAir.gd" id="4_nfob3"]
+[ext_resource type="Script" path="res://Scripts/Stats/Stats.gd" id="4_v6006"]
 [ext_resource type="Resource" uid="uid://nm54grw7twvj" path="res://Game Data/Creature Data/Test/Test Creature.tres" id="5_0sifs"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_8fqx0"]
@@ -12,6 +13,14 @@
 albedo_color = Color(0.711633, 0.41223, 0.244806, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l3fip"]
+
+[sub_resource type="Resource" id="Resource_mefnu"]
+script = ExtResource("4_v6006")
+
+[sub_resource type="Resource" id="Resource_c4ptm"]
+script = ExtResource("4_5mjai")
+base_blueprint = ExtResource("5_0sifs")
+stats = SubResource("Resource_mefnu")
 
 [node name="Test Enemy" type="CharacterBody3D"]
 
@@ -37,7 +46,5 @@ script = ExtResource("4_nfob3")
 
 [node name="Combatant" type="Node" parent="."]
 script = ExtResource("3_4lt0f")
-
-[node name="CreatureInstance" type="Node" parent="."]
-script = ExtResource("4_5mjai")
-blueprint = ExtResource("5_0sifs")
+stats = SubResource("Resource_mefnu")
+instance_data = SubResource("Resource_c4ptm")

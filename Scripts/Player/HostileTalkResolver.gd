@@ -26,9 +26,9 @@ func on_begin_conversation(target) -> void:
 	
 	# Start the conversation
 	# TODO: Change what node is used here.
-	if curr_target.has_node("CreatureInstance") == true:
+	if curr_target.has_node("Combatant") == true:
 		Dialogic.signal_event.connect(on_enemy_conversation_ended)
-		Dialogic.start(curr_target.get_node("CreatureInstance").blueprint.sequence)
+		Dialogic.start(curr_target.get_node("Combatant").instance_data.base_blueprint.sequence)
 		Dialogic.timeline_ended.connect( on_dialogic_dialogue_ended )
 		Globals.is_movement_disabled = true
 
@@ -47,4 +47,4 @@ func on_dialogic_dialogue_ended() -> void:
 
 func on_enemy_conversation_ended(argument: String) -> void:
 	if argument.to_lower().contains("success") == true:
-		PlayerRosterController.add_to_roster(curr_target)
+		PlayerRosterController.add_to_roster(curr_target.get_node("Combatant"))
