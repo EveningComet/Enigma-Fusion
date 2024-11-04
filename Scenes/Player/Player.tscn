@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://bc7v43o528ywf"]
+[gd_scene load_steps=19 format=3 uid="uid://bc7v43o528ywf"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerLocomotionController.gd" id="1_ney4i"]
 [ext_resource type="Script" path="res://Scripts/Player/CameraController.gd" id="1_x8v2e"]
+[ext_resource type="PackedScene" uid="uid://ba50il6fsnvi1" path="res://Scenes/Creatures/Models/Female Secretary.tscn" id="2_alx0n"]
 [ext_resource type="Script" path="res://Scripts/Player/Player Locomotion States/PLGround.gd" id="3_wdwin"]
 [ext_resource type="Script" path="res://Scripts/Player/Player Locomotion States/PLAir.gd" id="4_gfngo"]
 [ext_resource type="Script" path="res://Scripts/Creature/Combatant.gd" id="5_1uts1"]
@@ -11,10 +12,12 @@
 [ext_resource type="Script" path="res://Scripts/Creature/Skill/SkillInstance.gd" id="8_vly3f"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerSkillHandler.gd" id="9_wq3v5"]
 [ext_resource type="PackedScene" uid="uid://dewqtqbx2j88g" path="res://Scenes/Player/Hostile Talk Starter.tscn" id="11_hfac6"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_c34u5"]
+[ext_resource type="Script" path="res://Scripts/Creature/SkinHandler.gd" id="12_i6qom"]
+[ext_resource type="Script" path="res://Scripts/Creature/FactionOwner.gd" id="14_xo365"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_robhp"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4uwfy"]
 
 [sub_resource type="Resource" id="Resource_0cmi4"]
 script = ExtResource("8_vly3f")
@@ -26,21 +29,19 @@ radius = 5.0
 [node name="Player" type="CharacterBody3D"]
 platform_on_leave = 1
 
-[node name="Gfx" type="Node3D" parent="."]
+[node name="SkinHandler" type="Node3D" parent="."]
+script = ExtResource("12_i6qom")
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="Gfx"]
-mesh = SubResource("CapsuleMesh_c34u5")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Gfx/CSGMesh3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.524697, -0.498017)
-size = Vector3(0.25, 0.25, 1)
+[node name="Female Secretary" parent="SkinHandler" instance=ExtResource("2_alx0n")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_robhp")
 
 [node name="Camera Rig" type="SpringArm3D" parent="." node_paths=PackedStringArray("aim_cast", "target")]
+shape = SubResource("SphereShape3D_4uwfy")
 spring_length = 4.0
-margin = 0.2
+margin = 0.5
 script = ExtResource("1_x8v2e")
 aim_cast = NodePath("Camera3D/Aim Cast")
 target = NodePath("..")
@@ -94,3 +95,6 @@ interaction_radius = NodePath("../Interaction Radius")
 [node name="Timer" type="Timer" parent="PlayerHostileTalkHandler"]
 process_callback = 0
 one_shot = true
+
+[node name="FactionOwner" type="Node" parent="."]
+script = ExtResource("14_xo365")

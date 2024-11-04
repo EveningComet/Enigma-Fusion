@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://dxp6vrxs57r60"]
+
+[ext_resource type="PackedScene" uid="uid://jwrak4o1jp4b" path="res://Imported Assets/Models/Scoppio/knight.glb" id="1_habg7"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ic3pc"]
+animation = &"k_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1xjel"]
+animation = &"k_walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_478xe"]
+animation = &"k_walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_um4xa"]
+animation = &"k_walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4v64g"]
+animation = &"k_walk"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_i0w6w"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_ic3pc")
+blend_point_0/pos = Vector2(0, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_1xjel")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_478xe")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_um4xa")
+blend_point_3/pos = Vector2(0, -1)
+blend_point_4/node = SubResource("AnimationNodeAnimation_4v64g")
+blend_point_4/pos = Vector2(-1, 0)
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l2ilp"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_2bhb7"]
+states/movement/node = SubResource("AnimationNodeBlendSpace2D_i0w6w")
+states/movement/position = Vector2(356, 100)
+transitions = ["Start", "movement", SubResource("AnimationNodeStateMachineTransition_l2ilp")]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_rxxna"]
+nodes/locomotion/node = SubResource("AnimationNodeStateMachine_2bhb7")
+nodes/locomotion/position = Vector2(-60, 60)
+node_connections = [&"output", 0, &"locomotion"]
+
+[node name="Scoppio Knight" instance=ExtResource("1_habg7")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/position = Vector3(2.06691e-10, 0.0267351, 1.15891e-10)
+bones/1/rotation = Quaternion(0.0515815, -3.29082e-06, 3.03293e-07, 0.998669)
+bones/2/position = Vector3(0.176714, 0.413492, 0.00481975)
+bones/2/rotation = Quaternion(-0.000754725, -0.0279158, 0.995844, -0.0866933)
+bones/3/rotation = Quaternion(0.106549, -0.0160875, 0.0338703, 0.9936)
+bones/4/rotation = Quaternion(-0.0358973, 0.000123801, -0.0680913, 0.997033)
+bones/5/rotation = Quaternion(-0.00075635, -0.0477949, 0.997932, 0.0429847)
+bones/6/rotation = Quaternion(0.0283746, -0.00112884, 0.0305506, 0.99913)
+bones/7/rotation = Quaternion(0.617074, -0.00261241, -0.00519521, 0.786883)
+bones/8/position = Vector3(-0.176714, 0.42417, 0.00516609)
+bones/8/rotation = Quaternion(0.0298962, -0.0439111, 0.994289, 0.0925649)
+bones/9/rotation = Quaternion(0.122458, 0.020823, -0.039248, 0.991479)
+bones/10/rotation = Quaternion(-0.0356036, 2.10992e-05, 0.0680019, 0.99705)
+bones/11/rotation = Quaternion(0.000673544, -0.0497096, 0.997838, -0.0429861)
+bones/12/rotation = Quaternion(0.0294065, 0.00107158, -0.0305528, 0.9991)
+bones/13/rotation = Quaternion(0.61793, 0.00258534, 0.00521455, 0.786212)
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeBlendTree_rxxna")
+anim_player = NodePath("../AnimationPlayer")
+parameters/locomotion/movement/blend_position = Vector2(0.00158978, 0.00291538)

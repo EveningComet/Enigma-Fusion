@@ -20,12 +20,8 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("interact"):
 		pass
 	
-	jump_pressed  = false
-	jump_released = false
-	if Input.is_action_just_pressed("jump"):
-		jump_pressed = true
-	if Input.is_action_just_released("jump"):
-		jump_released = true
+	jump_pressed  = Input.is_action_just_pressed("jump")
+	jump_released = Input.is_action_just_released("jump")
 
 func update_input_dir() -> void:
 	input_dir = Vector3.ZERO

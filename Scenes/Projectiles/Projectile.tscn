@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://coel4pxg5wefi"]
+[gd_scene load_steps=5 format=3 uid="uid://coel4pxg5wefi"]
 
 [ext_resource type="Script" path="res://Scripts/Combat/Projectile.gd" id="1_qq6yh"]
+[ext_resource type="Script" path="res://Scripts/Creature/FactionOwner.gd" id="2_7v027"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7yboi"]
 albedo_color = Color(0.853133, 0.833247, 0.436174, 1)
@@ -20,3 +21,6 @@ material = SubResource("StandardMaterial3D_7yboi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_7selx")
+
+[node name="FactionOwner" type="Node" parent="."]
+script = ExtResource("2_7v027")

@@ -1,16 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://cw6v7bqh7go64"]
+[gd_scene load_steps=13 format=3 uid="uid://cw6v7bqh7go64"]
 
+[ext_resource type="PackedScene" uid="uid://dxp6vrxs57r60" path="res://Scenes/Creatures/Models/Scoppio Knight.tscn" id="2_yosdl"]
 [ext_resource type="Script" path="res://Scripts/Creature/Combatant.gd" id="3_4lt0f"]
 [ext_resource type="Script" path="res://Scripts/Creature/Locomotion/LocomotionController.gd" id="3_jnq1n"]
 [ext_resource type="Script" path="res://Scripts/Creature/CreatureInstance.gd" id="4_5mjai"]
 [ext_resource type="Script" path="res://Scripts/Creature/Locomotion/States/LAir.gd" id="4_nfob3"]
 [ext_resource type="Script" path="res://Scripts/Stats/Stats.gd" id="4_v6006"]
 [ext_resource type="Resource" uid="uid://nm54grw7twvj" path="res://Game Data/Creature Data/Test/Test Creature.tres" id="5_0sifs"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_8fqx0"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1cobl"]
-albedo_color = Color(0.711633, 0.41223, 0.244806, 1)
+[ext_resource type="Script" path="res://Scripts/Creature/SkinHandler.gd" id="7_8qcyf"]
+[ext_resource type="Script" path="res://Scripts/Creature/FactionOwner.gd" id="9_xjcut"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l3fip"]
 
@@ -24,17 +22,13 @@ stats = SubResource("Resource_mefnu")
 
 [node name="Test Enemy" type="CharacterBody3D"]
 
-[node name="GFX" type="Node3D" parent="."]
+[node name="SkinHandler" type="Node3D" parent="."]
+script = ExtResource("7_8qcyf")
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="GFX"]
-mesh = SubResource("CapsuleMesh_8fqx0")
-material = SubResource("StandardMaterial3D_1cobl")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="GFX/CSGMesh3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.554167, -0.507115)
-size = Vector3(0.5, 0.25, 0.5)
+[node name="Scoppio Knight" parent="SkinHandler" instance=ExtResource("2_yosdl")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_l3fip")
 
 [node name="LocomotionController" type="Node" parent="."]
@@ -48,3 +42,7 @@ script = ExtResource("4_nfob3")
 script = ExtResource("3_4lt0f")
 stats = SubResource("Resource_mefnu")
 instance_data = SubResource("Resource_c4ptm")
+
+[node name="FactionOwner" type="Node" parent="."]
+script = ExtResource("9_xjcut")
+faction = 1

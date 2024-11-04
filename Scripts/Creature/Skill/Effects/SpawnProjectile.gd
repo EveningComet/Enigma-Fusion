@@ -6,7 +6,7 @@ class_name SpawnProjectile extends SkillEffect
 
 func execute(activator, targets) -> void:
 	var projectile: Projectile = projectile_prefab.instantiate()
-	activator.get_tree().root.add_child(projectile)
+	activator.owner.add_child(projectile)
 	
 	# TODO: Proper spawning of projectile location and handling of direction.
 	# e.g: spawn at the fire point of a gun.

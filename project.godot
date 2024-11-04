@@ -29,9 +29,7 @@ Globals="*res://Scripts/Autoloads/Globals.gd"
 [dialogic]
 
 directories/dch_directory={}
-directories/dtl_directory={
-"Test Creature Timeline": "res://Game Data/Creature Data/Test/Test Creature Timeline.dtl"
-}
+directories/dtl_directory={}
 layout/style_list=["res://Game Data/Dialogic Data/Dialogic Style.tres"]
 layout/default_style="res://Game Data/Dialogic Data/Dialogic Style.tres"
 glossary/default_case_sensitive=true
