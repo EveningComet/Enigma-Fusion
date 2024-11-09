@@ -1,6 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dxp6vrxs57r60"]
+[gd_scene load_steps=14 format=3 uid="uid://dxp6vrxs57r60"]
 
 [ext_resource type="PackedScene" uid="uid://jwrak4o1jp4b" path="res://Imported Assets/Models/Scoppio/knight.glb" id="1_habg7"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vvtib"]
+animation = &"k_idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ic3pc"]
 animation = &"k_idle"
@@ -32,10 +35,18 @@ blend_point_4/pos = Vector2(-1, 0)
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l2ilp"]
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_14vvg"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f3m8w"]
+xfade_time = 0.2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_2bhb7"]
+states/falling/node = SubResource("AnimationNodeAnimation_vvtib")
+states/falling/position = Vector2(356.32, 169.2)
 states/movement/node = SubResource("AnimationNodeBlendSpace2D_i0w6w")
 states/movement/position = Vector2(356, 100)
-transitions = ["Start", "movement", SubResource("AnimationNodeStateMachineTransition_l2ilp")]
+transitions = ["Start", "movement", SubResource("AnimationNodeStateMachineTransition_l2ilp"), "movement", "falling", SubResource("AnimationNodeStateMachineTransition_14vvg"), "falling", "movement", SubResource("AnimationNodeStateMachineTransition_f3m8w")]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_rxxna"]
 nodes/locomotion/node = SubResource("AnimationNodeStateMachine_2bhb7")
@@ -46,22 +57,22 @@ node_connections = [&"output", 0, &"locomotion"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/position = Vector3(2.06691e-10, 0.0267351, 1.15891e-10)
-bones/1/rotation = Quaternion(0.0515815, -3.29082e-06, 3.03293e-07, 0.998669)
-bones/2/position = Vector3(0.176714, 0.413492, 0.00481975)
-bones/2/rotation = Quaternion(-0.000754725, -0.0279158, 0.995844, -0.0866933)
-bones/3/rotation = Quaternion(0.106549, -0.0160875, 0.0338703, 0.9936)
-bones/4/rotation = Quaternion(-0.0358973, 0.000123801, -0.0680913, 0.997033)
-bones/5/rotation = Quaternion(-0.00075635, -0.0477949, 0.997932, 0.0429847)
-bones/6/rotation = Quaternion(0.0283746, -0.00112884, 0.0305506, 0.99913)
-bones/7/rotation = Quaternion(0.617074, -0.00261241, -0.00519521, 0.786883)
-bones/8/position = Vector3(-0.176714, 0.42417, 0.00516609)
-bones/8/rotation = Quaternion(0.0298962, -0.0439111, 0.994289, 0.0925649)
-bones/9/rotation = Quaternion(0.122458, 0.020823, -0.039248, 0.991479)
-bones/10/rotation = Quaternion(-0.0356036, 2.10992e-05, 0.0680019, 0.99705)
-bones/11/rotation = Quaternion(0.000673544, -0.0497096, 0.997838, -0.0429861)
-bones/12/rotation = Quaternion(0.0294065, 0.00107158, -0.0305528, 0.9991)
-bones/13/rotation = Quaternion(0.61793, 0.00258534, 0.00521455, 0.786212)
+bones/0/position = Vector3(2.05645e-10, 0.0267597, 1.1598e-10)
+bones/1/rotation = Quaternion(0.0488529, -0.00270507, 0.000253416, 0.998802)
+bones/2/position = Vector3(0.176714, 0.414308, 0.00484623)
+bones/2/rotation = Quaternion(-0.000744941, -0.0278947, 0.995844, -0.086691)
+bones/3/rotation = Quaternion(0.106559, -0.0160951, 0.0338733, 0.993599)
+bones/4/rotation = Quaternion(-0.0358865, 0.000118436, -0.068088, 0.997034)
+bones/5/rotation = Quaternion(-0.000756269, -0.0477968, 0.997932, 0.0429847)
+bones/6/rotation = Quaternion(0.0281429, -0.00114169, 0.0305502, 0.999136)
+bones/7/rotation = Quaternion(0.617132, -0.00261059, -0.00519651, 0.786838)
+bones/8/position = Vector3(-0.176714, 0.424986, 0.00519257)
+bones/8/rotation = Quaternion(0.029906, -0.0439322, 0.994287, 0.0925673)
+bones/9/rotation = Quaternion(0.122441, 0.0208157, -0.0392448, 0.991481)
+bones/10/rotation = Quaternion(-0.0356144, 1.57229e-05, 0.0680052, 0.997049)
+bones/11/rotation = Quaternion(0.000678589, -0.0495924, 0.997844, -0.042986)
+bones/12/rotation = Quaternion(0.0292438, 0.0010806, -0.0305524, 0.999105)
+bones/13/rotation = Quaternion(0.617927, 0.00258543, 0.00521448, 0.786214)
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = SubResource("AnimationNodeBlendTree_rxxna")

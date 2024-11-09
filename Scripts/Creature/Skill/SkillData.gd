@@ -25,6 +25,6 @@ class_name SkillData extends Resource
 @export var effects: Array[SkillEffect] = []
 
 ## Perform this action.
-func execute(activator, targets) -> void:
+func execute(targeting_data: TargetingData) -> void:
 	for e: SkillEffect in effects:
-		e.execute(activator, targets)
+		e.execute( targeting_data )

@@ -23,6 +23,7 @@ func is_cooldown_finished() -> bool:
 	return curr_cooldown <= 0.0
 
 ## Quick way to execute the attached skill.
-func execute(activator, targets) -> void:
+func execute(targeting_data: TargetingData) -> void:
+	skill.execute(targeting_data)
+	reset_cooldown()
 	skill_executed.emit(self)
-	skill.execute(activator, targets)

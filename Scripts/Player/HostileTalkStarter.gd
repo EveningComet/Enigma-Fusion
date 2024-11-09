@@ -25,7 +25,9 @@ func set_direction(dir: Vector3) -> void:
 
 func on_body_entered(body) -> void:
 	if body.has_node("Combatant"):
-		var combatant: Combatant = body.get_node("Combatant")
+		var combatant:     Combatant    = body.get_node("Combatant")
+		var faction_owner: FactionOwner = body.get_node("FactionOwner")
+		# TODO: "Cleaner" to use faction owner.
 		if PlayerRosterController.contains_character(combatant) == false:
 			
 			# Collided with an enemy the player can talk to, fire the event

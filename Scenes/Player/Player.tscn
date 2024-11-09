@@ -38,7 +38,7 @@ script = ExtResource("12_i6qom")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_robhp")
 
-[node name="Camera Rig" type="SpringArm3D" parent="." node_paths=PackedStringArray("aim_cast", "target")]
+[node name="CameraController" type="SpringArm3D" parent="." node_paths=PackedStringArray("aim_cast", "target")]
 shape = SubResource("SphereShape3D_4uwfy")
 spring_length = 4.0
 margin = 0.5
@@ -46,15 +46,15 @@ script = ExtResource("1_x8v2e")
 aim_cast = NodePath("Camera3D/Aim Cast")
 target = NodePath("..")
 
-[node name="Camera3D" type="Camera3D" parent="Camera Rig"]
+[node name="Camera3D" type="Camera3D" parent="CameraController"]
 current = true
 
-[node name="Aim Cast" type="RayCast3D" parent="Camera Rig/Camera3D"]
+[node name="Aim Cast" type="RayCast3D" parent="CameraController/Camera3D"]
 target_position = Vector3(0, 0, -1000)
 
 [node name="PlayerLocomotionController" type="Node" parent="." node_paths=PackedStringArray("camera_controller", "input_controller")]
 script = ExtResource("1_ney4i")
-camera_controller = NodePath("../Camera Rig")
+camera_controller = NodePath("../CameraController")
 input_controller = NodePath("../PlayerInputController")
 initial_state = NodePath("PLGround")
 
@@ -72,11 +72,10 @@ script = ExtResource("5_1uts1")
 [node name="PlayerInputController" type="Node" parent="."]
 script = ExtResource("6_tnric")
 
-[node name="PlayerSkillHandler" type="Node" parent="." node_paths=PackedStringArray("camera_controller", "combatant")]
+[node name="PlayerSkillHandler" type="Node" parent="." node_paths=PackedStringArray("camera_controller")]
 script = ExtResource("9_wq3v5")
-camera_controller = NodePath("../Camera Rig")
+camera_controller = NodePath("../CameraController")
 active_skills = Array[ExtResource("8_vly3f")]([SubResource("Resource_0cmi4")])
-combatant = NodePath("../Combatant")
 
 [node name="Interaction Radius" type="Area3D" parent="."]
 
@@ -86,7 +85,7 @@ disabled = true
 
 [node name="PlayerHostileTalkHandler" type="Node" parent="." node_paths=PackedStringArray("camera_controller", "timer", "interaction_radius")]
 script = ExtResource("7_gswu2")
-camera_controller = NodePath("../Camera Rig")
+camera_controller = NodePath("../CameraController")
 timer = NodePath("Timer")
 hostile_talk_starter_prefab = ExtResource("11_hfac6")
 cooldown_time = 1.0

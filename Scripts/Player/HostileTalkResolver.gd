@@ -8,6 +8,8 @@ var curr_time_stop_area: Area3D = null
 ## The enemy the player is currently trying to add to their team.
 var curr_target
 
+var _party_member_bt = preload("res://ai/trees/Party Member BT.tres")
+
 func _ready() -> void:
 	Eventbus.begin_conversation_with_enemy.connect( on_begin_conversation )
 
@@ -22,20 +24,20 @@ func on_begin_conversation(target) -> void:
 	curr_time_stop_area.set_as_top_level(true)
 	get_parent().add_child(curr_time_stop_area)
 	curr_time_stop_area.global_position = target.global_position
-	curr_time_stop_area.monitoring = true
+	curr_time_stop_area.monitoring      = true
 	
 	# Start the conversation
 	# TODO: Change what node is used here.
 	if curr_target.has_node("Combatant") == true:
-		Dialogic.signal_event.connect(on_enemy_conversation_ended)
+		Dialogic.signal_event.connect(_on_enemy_conversation_ended)
 		Dialogic.start(curr_target.get_node("Combatant").instance_data.base_blueprint.sequence)
-		Dialogic.timeline_ended.connect( on_dialogic_dialogue_ended )
+		Dialogic.timeline_ended.connect( _on_dialogic_dialogue_ended )
 		Globals.is_movement_disabled = true
 
-func on_dialogic_dialogue_ended() -> void:
+func _on_dialogic_dialogue_ended() -> void:
 	# Clean up
-	Dialogic.signal_event.disconnect( on_enemy_conversation_ended )
-	Dialogic.timeline_ended.disconnect( on_dialogic_dialogue_ended )
+	Dialogic.signal_event.disconnect( _on_enemy_conversation_ended )
+	Dialogic.timeline_ended.disconnect( _on_dialogic_dialogue_ended )
 	curr_time_stop_area.queue_free()
 	curr_time_stop_area = null
 	curr_target = null
@@ -45,6 +47,8 @@ func on_dialogic_dialogue_ended() -> void:
 	await get_tree().create_timer(0.1, false, true).timeout
 	Globals.is_movement_disabled = false
 
-func on_enemy_conversation_ended(argument: String) -> void:
+func _on_enemy_conversation_ended(argument: String) -> void:
 	if argument.to_lower().contains("success") == true:
+		curr_target.get_node("BTPlayer").behavior_tree = _party_member_bt
+		curr_target.get_node("FactionOwner").set_as_player()
 		PlayerRosterController.add_to_roster(curr_target.get_node("Combatant"))

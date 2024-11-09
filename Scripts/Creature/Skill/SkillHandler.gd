@@ -8,7 +8,7 @@ class_name SkillHandler extends Node
 @export var active_skills: Array[SkillInstance] = []
 
 ## Used as a quick way to get a character's stats.
-@export var combatant: Combatant
+@onready var combatant: Combatant = get_parent().get_node("Combatant")
 
 func _ready() -> void:
 	# Create empty slots to allow for swapping and the like
@@ -21,29 +21,14 @@ func _ready() -> void:
 		active_skills.insert(i, copy_of_active_skills[i])
 
 func _physics_process(delta: float) -> void:
-	update_active_skills( delta )
+	_tick_cooldowns( delta )
 
-func update_active_skills(delta: float) -> void:
+func _tick_cooldowns(delta: float) -> void:
 	for s in active_skills:
 		if s != null:
 			s.tick(delta)
-
-## Attempt to activate a usable skill.
-func activate_skill(index: int) -> void:
-	var skill_instance: SkillInstance = active_skills[index]
-	if skill_instance != null:
-		_was_skill_use_successful(skill_instance)
-
-## Determines if the skill use was successful.
-func _was_skill_use_successful(skill_instance: SkillInstance) -> bool:
-	var curr_sp: int = combatant.stats.get_curr_sp()
-	if curr_sp >= skill_instance.skill.base_cost and skill_instance.is_cooldown_finished() == true:
-		skill_instance.execute(
-			get_parent(), []
-		)
-		combatant.stats.remove_sp(skill_instance.skill.base_cost)
-		skill_instance.reset_cooldown()
-		
-		return true
-	
-	return false
+			
+func execute_skill(skill: SkillInstance, targeting_data: TargetingData) -> void:
+	if skill.is_cooldown_finished() == true and \
+	combatant.stats.get_curr_sp() >= skill.skill.base_cost:
+		skill.execute(targeting_data)

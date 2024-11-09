@@ -12,5 +12,8 @@ enum Factions
 func copy_faction(f_owner: FactionOwner) -> void:
 	faction = f_owner.faction
 
-func is_player_owned() -> bool:
-	return faction == Factions.Player
+func set_as_player() -> void:
+	faction = Factions.Player
+
+func is_same_faction(f_owner: FactionOwner) -> bool:
+	return faction == f_owner.faction

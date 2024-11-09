@@ -7,13 +7,12 @@ class_name Combatant extends Node
 signal stat_changed(com: Combatant)
 
 ## The stats component for a character.
-@export var stats: Stats = Stats.new(self)
+@onready var stats: Stats = Stats.new(self)
 
 ## Stores the instanced data related to a creature.
 @export var instance_data: CreatureInstance
 
-func take_damage(damage_data: int) -> void:
-	# TODO: Damage data should be more than just an int.
+func take_damage(damage_data: DamageData) -> void:
 	stats.take_damage(damage_data)
 	if OS.is_debug_build() == true:
 		var p_name: String = get_parent().name

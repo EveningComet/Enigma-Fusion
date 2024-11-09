@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://brvilqhic1pau" path="res://Scenes/UI/General/Player Hud.tscn" id="5_eerm1"]
 [ext_resource type="Texture2D" uid="uid://dadumucuoa8l1" path="res://Imported Assets/KenneyNL Prototyping Textures/Purple/texture_01.png" id="5_m5pbk"]
 [ext_resource type="PackedScene" uid="uid://dd8krdwvnt2cm" path="res://Scenes/UI/Pause Menu.tscn" id="7_uu3dd"]
-[ext_resource type="PackedScene" uid="uid://cw6v7bqh7go64" path="res://Scenes/Test Enemy.tscn" id="8_pltb2"]
+[ext_resource type="PackedScene" uid="uid://cw6v7bqh7go64" path="res://Scenes/Creatures/Prefabs/Test Enemy.tscn" id="8_pltb2"]
 [ext_resource type="Script" path="res://Scripts/Player/HostileTalkResolver.gd" id="9_dnqrv"]
 [ext_resource type="PackedScene" uid="uid://dkxv8sw02veo8" path="res://Scenes/Player/Time Stop Area.tscn" id="10_5msbi"]
 [ext_resource type="Script" path="res://Scripts/Testing/Rotator.gd" id="10_vyp5i"]

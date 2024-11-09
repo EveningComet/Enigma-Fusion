@@ -32,5 +32,3 @@ func _physics_process(delta: float) -> void:
 		# Make the object fly in the direction the camera is looking
 		var dir: Vector3 = -camera_controller.global_transform.basis.z
 		hostile_talk_starter.set_direction(dir)
-		
-		

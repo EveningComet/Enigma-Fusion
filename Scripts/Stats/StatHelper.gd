@@ -1,63 +1,69 @@
-## Stores values and helpers for stats.
+## A class that stores variables related to different types of stats.
 class_name StatHelper
 
 ## When fusing a character, this is what the parent growth stats will
 ## be divided by.
 const STAT_GROWTH_FUSION_SCALER: int = 2
 
-## Used for indexing and accessing certain stats.
 enum StatTypes {
 	# Attributes
-	Vitality,
-	Technique,
-	Will,
+	Vitality,             ## For health, defense, etc.
+	Technique,            ## For physical/regular damage, etc.
+	Will,                 ## For mind, special points, etc.
 	
 	# Vitals
-	MaxHP,
-	CurrentHP,
-	MaxSP,
-	CurrentSP,
+	MaxHP,                # Max hit points
+	CurrentHP,            # Current hit points
+	MaxSP,                # Our max mana/stamina/etc.
+	CurrentSP,            # Our current mana/stamina/etc.
 	
-	# Defense / Resistances
+	# Other stats
+	# These stats will store the "bonus" value
+	CriticalHitChance,
+	Speed,
+	Evasion,
+	Perception,
+	
+	# Modifiers for damage types
+	PhysicalPower,
+	SpecialPower,
+	HeatMods,
+	ColdMods,
+	ElectricityMods,
+	PsychicMods,
+	
+	# Resistances (Damage Type)
+	# Except for regular damage, the rest are primarily percentage based (0.0-1.0)
 	Defense,
-	FireRes,
-	WaterRes,
-	EarthRes,
-	AirRes,
+	HeatRes,
+	ColdRes,
+	ElectricityRes,
+	PsychicRes,
 	
-	# Damage Modifiers
-	FireMods,
-	WaterMods,
-	EarthMods,
-	AirMods,
-	
-	# Other
-	CritChance
+	# Resistances (Status Effects)
+	# Percentage based (0.0-1.0)
+	Plagued
 }
 
-## The different damage types that exist in the game.
+## The different types of damage.
 enum DamageTypes {
-	Regular,
-	Fire,
-	Water,
-	Earth,
-	Air,
-	Pure
+	Base,
+	Heat,
+	Cold,
+	Electricity,
+	Psychic,
+	True ## Ignores resistance.
 }
 
-## Get the growth rates for a creature and account for fusion.
-static func get_attribute_growth_rate(
-	base_bp:  CreatureBlueprint,
-	parent_a: CreatureBlueprint = null,
-	parent_b: CreatureBlueprint = null
-):
-	pass
-
-## Wrapper to work with/around resistances.
+## Easy accessor for returning the resistance for damage types.
 static var damage_to_res_map: Dictionary = {
-	DamageTypes.Regular: StatTypes.Defense,
-	DamageTypes.Fire:    StatTypes.FireRes,
-	DamageTypes.Water:   StatTypes.WaterRes,
-	DamageTypes.Earth:   StatTypes.EarthRes,
-	DamageTypes.Air:     StatTypes.AirRes
+	DamageTypes.Base: StatTypes.Defense,
+	DamageTypes.Heat: StatTypes.HeatRes,
+	DamageTypes.Cold: StatTypes.ColdRes,
+	DamageTypes.Electricity: StatTypes.ElectricityRes,
+	DamageTypes.Psychic: StatTypes.PsychicRes
 }
+
+## Wrapper for getting the attributes.
+static var attributes: Array[StatTypes]:
+	get: return [StatTypes.Vitality, StatTypes.Technique, StatTypes.Will]

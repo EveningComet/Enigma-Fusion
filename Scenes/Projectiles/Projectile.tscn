@@ -9,9 +9,10 @@ albedo_color = Color(0.853133, 0.833247, 0.436174, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_7selx"]
 size = Vector3(1, 1, 2)
 
-[node name="Projectile" type="CharacterBody3D"]
+[node name="Projectile" type="CharacterBody3D" node_paths=PackedStringArray("faction_owner")]
 script = ExtResource("1_qq6yh")
 move_speed = 25.0
+faction_owner = NodePath("FactionOwner")
 
 [node name="GFX" type="Node3D" parent="."]
 
