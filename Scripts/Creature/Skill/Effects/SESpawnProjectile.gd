@@ -22,7 +22,7 @@ func execute(targeting_data: TargetingData) -> void:
 	)
 	
 	targeting_data.activator.owner.add_child(projectile)
-	projectile.global_position = targeting_data.origin
+	projectile.global_position = targeting_data.origin + Vector3.UP
 	projectile.add_collision_exception_with(targeting_data.activator)
 	
 	projectile.look_at(targeting_data.activator.global_transform.origin + targeting_data.target_v + Vector3.UP, Vector3.UP)

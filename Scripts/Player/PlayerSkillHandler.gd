@@ -23,6 +23,6 @@ func _on_use_skill(index: int) -> void:
 	if index < active_skills.size():
 		var targeting_data: TargetingData = TargetingData.new()
 		targeting_data.activator  = get_parent()
-		targeting_data.origin     = get_parent().global_position + Vector3.UP
+		targeting_data.origin     = get_parent().global_position
 		targeting_data.target_v   = get_aim_dir()
 		execute_skill(active_skills[index], targeting_data)

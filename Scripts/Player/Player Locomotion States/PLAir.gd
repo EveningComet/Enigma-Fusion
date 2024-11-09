@@ -54,12 +54,3 @@ func handle_move(delta: float) -> void:
 		return
 	
 	orient_to_face_camera_direction(my_state_machine.camera_controller, delta)
-
-func apply_movement(delta: float) -> void:
-	if _input_dir != Vector3.ZERO:
-		_velocity.x = _velocity.move_toward(_input_dir * move_speed, acceleration * delta).x
-		_velocity.z = _velocity.move_toward(_input_dir * move_speed, acceleration * delta).z
-
-func apply_friction(delta: float) -> void:
-	if _input_dir == Vector3.ZERO:
-		_velocity = _velocity.move_toward(Vector3.ZERO, friction * delta)
