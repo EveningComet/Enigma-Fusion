@@ -1,4 +1,4 @@
-## BT task that checks if the player is too far away.
+## BT task that checks if a character should follow the player.
 extends BTAction
 
 ## If the player is further away than this distance, then stop everything
@@ -17,12 +17,13 @@ func _tick(delta: float) -> Status:
 	var player = agent.get_parent().owner.get_node("Player")
 	if player != null:
 		
+		# TODO: Check if there are any enemies in range
 		var dist_sqr = agent.get_parent().global_position.distance_squared_to(
 			player.global_position
 		)
-		if dist_sqr >= _max_distance_squared:
+		
+		if dist_sqr <= _max_distance_squared:
 			blackboard.set_var(target_var, player)
 			return SUCCESS
 	
-	# The player is close enough, so don't worry.
 	return FAILURE

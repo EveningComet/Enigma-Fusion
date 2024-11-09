@@ -61,3 +61,7 @@ script = ExtResource("11_6f0je")
 
 [node name="Mover" type="Node" parent="."]
 script = ExtResource("12_uyy0a")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 2.0
+target_desired_distance = 3.0
